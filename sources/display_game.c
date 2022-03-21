@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 16:45:32 by cproesch          #+#    #+#             */
-/*   Updated: 2022/03/17 18:06:33 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/21 15:36:53 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	get_view_points(t_map *map)
 	map->player->plane_right_Y = map->player->pos[1] - (map->player->len_camera * sin(map->player->player_angle + (11 * PI / 60)));
 	map->player->plane_left_X = map->player->pos[0] - (map->player->len_camera * cos(map->player->player_angle - (11 * PI / 60)));
 	map->player->plane_left_Y = map->player->pos[1] - (map->player->len_camera * sin(map->player->player_angle - (11 * PI / 60)));
-	map->player->sideDistY = (int)map->player->pos[1];
-	map->player->sideDistX = map->player->dir[0] * map->player->dir[1] / map->player->dir[0];
+	map->player->sideDistX = (int)map->player->pos[0] + 1;
+	map->player->sideDistY = tan(map->player->player_angle) * map->player->sideDistX;
 	// printf("PX %f PY %f DX %f DY %f PLX %f PLY %f PRX %f PRY %F\n", map->player->plane_left_X, map->player->plane_left_Y, map->player->dir[0], map->player->dir[1], map->player->plane_left_X, map->player->plane_left_Y, map->player->plane_right_X,map->player->plane_right_Y);
 	// printf("Player position x = %f, player position y = %f\n", map->player->pos[0], map->player->pos[1]);
 	// printf("ray y = %f, ray x = %f\n", map->player->sideDistY, map->player->sideDistY);
