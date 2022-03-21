@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/21 16:53:12 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:16:49 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void	get_view_points(t_player *player)
 {
 	player->dir[0] = player->pos[0] + player->dist * cos(player->angle);
 	player->dir[1] = player->pos[1] + player->dist * sin(player->angle);
-		map->player->plane_right_X = map->player->pos[0] + (map->player->len_camera * cos(map->player->player_angle + (11 * PI / 60)));
-	map->player->plane_right_Y = map->player->pos[1] + (map->player->len_camera * sin(map->player->player_angle + (11 * PI / 60)));
-	map->player->plane_left_X = map->player->pos[0] + (map->player->len_camera * cos(map->player->player_angle - (11 * PI / 60)));
-	map->player->plane_left_Y = map->player->pos[1] + (map->player->len_camera * sin(map->player->player_angle - (11 * PI / 60)));
-	map->player->sideDistY = map->player->pos[1] + ((int)map->player->pos[1] + 1);
-	map->player->sideDistX = map->player->pos[0] + (cos(map->player->player_angle) * map->player->sideDistY / sin(map->player->player_angle));
+	player->plane_right_X = player->pos[0] + (player->dist * cos(player->angle + (11 * PI / 60)));
+	player->plane_right_Y = player->pos[1] + (player->dist * sin(player->angle + (11 * PI / 60)));
+	player->plane_left_X = player->pos[0] + (player->dist * cos(player->angle - (11 * PI / 60)));
+	player->plane_left_Y = player->pos[1] + (player->dist * sin(player->angle - (11 * PI / 60)));
+	player->sideDist_X_X = (int)player->pos[0] + 1;
+	player->sideDist_X_Y = player->pos[1] + (cos(player->angle) * player->sideDist_X_X / sin(player->angle));
+	player->sideDist_Y_Y = (int)player->pos[1] + 1;
+	player->sideDist_Y_X = player->pos[0] + (cos(player->angle) * player->sideDist_Y_Y / sin(player->angle));
 }

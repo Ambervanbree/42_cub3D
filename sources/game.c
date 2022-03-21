@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:56:55 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/21 16:15:25 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:18:10 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,50 @@ int	player_funct(t_data *data)
 		while (x < 5)
 		{
 			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->dir[0] * 60 + x, data->player->dir[1] * 60 + y, 0xFF0000);
+			x++;
+		}
+		y++;
+	}
+	y = 0;
+	while (y < 5)
+	{
+		x = 0;
+		while (x < 5)
+		{
+			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->plane_right_X * 60 + x, data->player->plane_right_Y * 60 + y, 0x000080);
+			x++;
+		}
+		y++;
+	}
+	y = 0;
+	while (y < 5)
+	{
+		x = 0;
+		while (x < 5)
+		{
+			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->plane_left_X * 60 + x, data->player->plane_left_Y * 60 + y, 0x000080);
+			x++;
+		}
+		y++;
+	}
+		y = 0;
+	while (y < 5)
+	{
+		x = 0;
+		while (x < 5)
+		{
+			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->sideDist_X_X * 60 + x, data->player->sideDist_X_Y * 60 + y, 0x0000000);
+			x++;
+		}
+		y++;
+	}
+	y = 0;
+	while (y < 5)
+	{
+		x = 0;
+		while (x < 5)
+		{
+			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->sideDist_Y_X * 60 + x, data->player->sideDist_Y_Y * 60 + y, 0x0000000);
 			x++;
 		}
 		y++;

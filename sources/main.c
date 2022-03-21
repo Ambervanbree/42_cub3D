@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/21 16:12:27 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:14:04 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ void	init_player_struct(t_player *player)
 	player->angle = 100;
 	player->dist = 2;
 	player->plane = 11 * PI / 60;
+	player->plane_right_X = 0;
+	player->plane_right_Y = 0;
+	player->plane_left_X = 0;
+	player->plane_left_Y = 0;
+	player->sideDist_X_X = 0;
+	player->sideDist_X_Y = 0;
+	player->sideDist_Y_X = 0;
+	player->sideDist_Y_Y = 0;
 }
 
 void	init_game_struct(t_game *game)

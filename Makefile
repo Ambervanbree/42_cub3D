@@ -6,7 +6,7 @@
 #    By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:51:08 by avan-bre          #+#    #+#              #
-#    Updated: 2022/03/21 17:10:42 by cproesch         ###   ########.fr        #
+#    Updated: 2022/03/21 18:56:08 by cproesch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,11 +57,11 @@ endif
 #                                 FILES                                        #                                                            
 ################################################################################  
 
-# S_DIR	=	sources/
-# SRCS	=	main.c parser.c exit_utils.c parse_utils.c map_checker.c \
-# 			display_game.c \
-# OBJS	=	$(addprefix $(S_DIR), $(SRCS:.c=.o))
-OBJS	=	screen_test.c
+S_DIR	=	sources/
+SRCS	=	main.c exit_utils.c parser.c parse_utils.c map_check_player_init.c \
+			game.c calculations.c keypress.c
+OBJS	=	$(addprefix $(S_DIR), $(SRCS:.c=.o))
+# OBJS	=	screen_ttt2.c
 
 ################################################################################                                                            
 #                                 RULES                                        #                                                            
