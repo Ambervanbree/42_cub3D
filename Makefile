@@ -6,7 +6,7 @@
 #    By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:51:08 by avan-bre          #+#    #+#              #
-#    Updated: 2022/03/21 15:31:50 by avan-bre         ###   ########.fr        #
+#    Updated: 2022/03/21 17:10:42 by cproesch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,11 +57,11 @@ endif
 #                                 FILES                                        #                                                            
 ################################################################################  
 
-S_DIR	=	sources/
-SRCS	=	main.c parser.c exit_utils.c parse_utils.c map_checker.c \
-			display_game.c \
-			screen_test.c
-OBJS	=	$(addprefix $(S_DIR), $(SRCS:.c=.o))
+# S_DIR	=	sources/
+# SRCS	=	main.c parser.c exit_utils.c parse_utils.c map_checker.c \
+# 			display_game.c \
+# OBJS	=	$(addprefix $(S_DIR), $(SRCS:.c=.o))
+OBJS	=	screen_test.c
 
 ################################################################################                                                            
 #                                 RULES                                        #                                                            

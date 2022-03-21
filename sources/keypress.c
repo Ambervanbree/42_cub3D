@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:04:08 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/21 16:24:36 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/21 18:17:29 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 // swapped rotate_left and rotate_right to match graphics
 
-void	rotate_left(t_player *player)
+void	rotate_right(t_player *player)
 {
 	player->angle -= 0.1;
 	if (player->angle < 0)
 		player->angle += 2 * PI;
 }
 
-void	rotate_right(t_player *player)
+void	rotate_left(t_player *player)
 {
 	player->angle += 0.1;
 	if (player->angle > 2 * PI)
@@ -42,11 +42,11 @@ int	key_event(int keypress, t_data *data)
 		free_and_exit(data, 0);
 	if (keypress == W)
 		walk_in_direction(data->player, data->player->angle + 0);
-	if (keypress == A)
-		walk_in_direction(data->player, data->player->angle + PI + PI / 2);
+	if (keypress == D)
+		walk_in_direction(data->player, data->player->angle - PI / 2);
 	if (keypress == S)
 		walk_in_direction(data->player, data->player->angle + PI);
-	if (keypress == D)
+	if (keypress == A)
 		walk_in_direction(data->player, data->player->angle + PI / 2);
 	if (keypress == RIGHT)
 		rotate_right(data->player);

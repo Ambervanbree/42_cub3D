@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/21 15:52:33 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/21 17:35:18 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,71 +39,71 @@ enum e_enum
 	LEFT = 65361
 };
 
-typedef double	t_vector[2];
+// typedef double	t_vector[2];
 
-typedef struct s_game
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*floor_tile;
-	void	*wall_tile;
-}	t_game;
+// typedef struct s_game
+// {
+// 	void	*mlx_ptr;
+// 	void	*win_ptr;
+// 	void	*floor_tile;
+// 	void	*wall_tile;
+// }	t_game;
 
-typedef struct s_player
-{
-	int			set;
-	t_vector	pos;
-	t_vector	dir;
-	t_vector	nextX;
-	t_vector	nextY;
-	double		angle;
-	double		plane;
-	double		dist;
-	double		sdX;
-	double		sdY;
-	double		ddX;
-	double		ddY;
+// typedef struct s_player
+// {
+// 	int			set;
+// 	t_vector	pos;
+// 	t_vector	dir;
+// 	t_vector	nextX;
+// 	t_vector	nextY;
+// 	double		angle;
+// 	double		plane;
+// 	double		dist;
+// 	double		sdX;
+// 	double		sdY;
+// 	double		ddX;
+// 	double		ddY;
 
-}	t_player;
+// }	t_player;
 
-typedef struct s_map
-{
-	char			*no;
-	char			*so;
-	char			*we;
-	char			*ea;
-	int				height;
-	int				width;
-	int				*floor;
-	int				*ceiling;
-	char			**map;
-}	t_map;
+// typedef struct s_map
+// {
+// 	char			*no;
+// 	char			*so;
+// 	char			*we;
+// 	char			*ea;
+// 	int				height;
+// 	int				width;
+// 	int				*floor;
+// 	int				*ceiling;
+// 	char			**map;
+// }	t_map;
 
-typedef struct s_data
-{
-	t_game		*game;
-	t_player	*player;
-	t_map		*map;
-}	t_data;
+// typedef struct s_data
+// {
+// 	t_game		*game;
+// 	t_player	*player;
+// 	t_map		*map;
+// }	t_data;
 
-//exit and free functions
-void	free_and_exit(t_data *data, int exit_code);
-int		error_message(char *string, char *name, int code);
-void	free_string(char **string);
-void	ft_free_map(t_map *map);
+// //exit and free functions
+// void	free_and_exit(t_data *data, int exit_code);
+// int		error_message(char *string, char *name, int code);
+// void	free_string(char **string);
+// void	ft_free_map(t_map *map);
 
-//parser
-int		parse_init_map(t_map *map, char *file);
-char	*get_path_texture(char *line);
-int		*get_color(char *line);
-void	print_map(t_map *map);
-void	get_len(t_map *map, int fd);
-char	*realloc_line(char *line, int size);
-int		check_map_init_player(t_data *data);
+// //parser
+// int		parse_init_map(t_map *map, char *file);
+// char	*get_path_texture(char *line);
+// int		*get_color(char *line);
+// void	print_map(t_map *map);
+// void	get_len(t_map *map, int fd);
+// char	*realloc_line(char *line, int size);
+// int		check_map_init_player(t_data *data);
 
-//game play
-void	init_game(t_data *data);
-int		key_event(int keypress, t_data *data);
-void	get_view_points(t_player *player);
+// //game play
+// void	init_game(t_data *data);
+// int		key_event(int keypress, t_data *data);
+// void	get_view_points(t_player *player);
 
 #endif
