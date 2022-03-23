@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/23 16:09:50 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/23 18:31:04 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,42 @@ double	hit(t_map *map, t_player *player, int i)
 	}
 	return (0);
 }
+
+// double	hit(t_map *map, t_player *player, int i)
+// {
+// 	t_vector	vecX;
+// 	t_vector	vecY;
+// 	double		hit_ler;
+
+// 	hit_ler = 0;
+// 	vecX[0] = player->pos[0] + (player->sdX * cos(player->ray_angle));
+// 	vecX[1] = player->pos[1] + (player->sdX * sin(player->ray_angle));
+// 	vecY[0] = player->pos[0] + (player->sdY * cos(player->ray_angle));
+// 	vecY[1] = player->pos[1] + (player->sdY * sin(player->ray_angle));
+// 	printf("vecX[0] = %f et map->width = %d, vecX[1] = %f et map->height = %d\n", vecX[0], map->width, vecX[1], map->height);
+// 	printf("vecY[0] = %f, vecY[1] = %f\n", vecY[0], vecY[1]);
+// 	printf("player->ray_angle = %f\n", player->ray_angle);
+// 	if (vecX[0] > 0 && vecX[1] > 0
+// 		&& vecX[0] < (map->width - 1) && vecX[1] < (map->height - 1)
+// 		&& map->map[(int)vecX[1]][(int)vecX[0]] == '1')
+// 	{
+// 		printf("hit!\n");
+// 		player->next_hit[i][0] = (int)vecX[0];		// a supprimer 
+// 		player->next_hit[i][1] = vecX[1];		// a supprimer 
+// 		hit_ler = player->sdX;
+// 	}
+// 	if (vecY[0] > 0 && vecY[1] > 0
+// 		&& vecY[0] < (map->width - 1) && vecY[1] < (map->height - 1)
+// 		&& map->map[(int)vecY[1]][(int)vecY[0]] == '1')
+// 	{
+// 		printf("hit!\n");
+// 		player->next_hit[i][0] = vecY[0];		// a supprimer 
+// 		player->next_hit[i][1] = (int)vecY[1];		// a supprimer 
+// 		if (player->sdX < player->sdY)
+// 			hit_ler = player->sdY;
+// 	}
+// 	return (hit_ler);
+// }
 
 double	correct_angle(double angle)
 {
