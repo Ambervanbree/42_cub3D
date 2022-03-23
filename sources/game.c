@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:56:55 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/21 19:18:10 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:10:58 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	player_funct(t_data *data)
 {
 	int		x;
 	int 	y;
+	int		k;
 	char	code;
 	void	*mlx;
 	void	*win;
@@ -65,7 +66,7 @@ int	player_funct(t_data *data)
 		x = 0;
 		while (x < 5)
 		{
-			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->plane_right_X * 60 + x, data->player->plane_right_Y * 60 + y, 0x000080);
+			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->plane_right_X * 60 + x, data->player->plane_right_Y * 60 + y, 0xffffff);
 			x++;
 		}
 		y++;
@@ -76,32 +77,26 @@ int	player_funct(t_data *data)
 		x = 0;
 		while (x < 5)
 		{
-			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->plane_left_X * 60 + x, data->player->plane_left_Y * 60 + y, 0x000080);
+			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->plane_left_X * 60 + x, data->player->plane_left_Y * 60 + y, 0xffffff);
 			x++;
 		}
 		y++;
 	}
+	k = 0;
+	while (k < 7)
+	{
 		y = 0;
-	while (y < 5)
-	{
-		x = 0;
-		while (x < 5)
+		while (y < 5)
 		{
-			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->sideDist_X_X * 60 + x, data->player->sideDist_X_Y * 60 + y, 0x0000000);
-			x++;
+			x = 0;
+			while (x < 5)
+			{
+				mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->next_hit[k][0] * 60 + x, data->player->next_hit[k][1] * 60 + y, 0x0000000);
+				x++;
+			}
+			y++;
 		}
-		y++;
-	}
-	y = 0;
-	while (y < 5)
-	{
-		x = 0;
-		while (x < 5)
-		{
-			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->sideDist_Y_X * 60 + x, data->player->sideDist_Y_Y * 60 + y, 0x0000000);
-			x++;
-		}
-		y++;
+		k++;
 	}
 	return (0);
 }
@@ -145,6 +140,6 @@ void 	init_window(t_data *data)
 void	init_game(t_data *data)
 {
 	init_window(data);
-	get_view_points(data->player);
+	get_view_points(data->player, data->map);
 	display_game(data);
 }

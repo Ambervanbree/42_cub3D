@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/21 19:14:04 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:11:47 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ void	init_player_struct(t_player *player)
 	player->plane_right_Y = 0;
 	player->plane_left_X = 0;
 	player->plane_left_Y = 0;
-	player->sideDist_X_X = 0;
-	player->sideDist_X_Y = 0;
-	player->sideDist_Y_X = 0;
-	player->sideDist_Y_Y = 0;
+	player->next_hit = malloc(8 * sizeof(t_vector));
+	// player->sideDist_X_X = 0;
+	// player->sideDist_X_Y = 0;
+	// player->sideDist_Y_X = 0;
+	// player->sideDist_Y_Y = 0;
 }
 
 void	init_game_struct(t_game *game)

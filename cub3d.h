@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/21 19:13:28 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:11:02 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ typedef struct s_player
 	int			set;
 	t_vector	pos;
 	t_vector	dir;
-	t_vector	nextX;
-	t_vector	nextY;
+	t_vector	*next_hit;
 	double		angle;
+	double		ray_angle;
 	double		plane;
 	double		dist;
 	double		sdX;
@@ -67,10 +67,10 @@ typedef struct s_player
 	double		plane_right_Y;
 	double		plane_left_X;
 	double		plane_left_Y;
-	double		sideDist_X_X;
-	double		sideDist_X_Y;
-	double		sideDist_Y_X;
-	double		sideDist_Y_Y;
+	// double		sideDist_X_X;
+	// double		sideDist_X_Y;
+	// double		sideDist_Y_X;
+	// double		sideDist_Y_Y;
 
 }	t_player;
 
@@ -112,6 +112,7 @@ int		check_map_init_player(t_data *data);
 //game play
 void	init_game(t_data *data);
 int		key_event(int keypress, t_data *data);
-void	get_view_points(t_player *player);
+void	get_view_points(t_player *player, t_map *map);
+double	correct_angle(double angle);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:36:17 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/21 16:12:52 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/23 13:14:32 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	get_player_data(t_player *player, int i, int j, char direction)
 		player->angle = 0;
 	else if (direction == 'W')
 		player->angle = PI;
+	printf("player angle init: %f\n", player->angle);
 	return (1);
 }
 
