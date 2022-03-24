@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/21 10:38:05 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:32:40 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ void	free_and_exit(t_data *data, int exit_code)
 	}
 	if (data->player)
 	{
+		free(data->player->ray_x);
+		free(data->player->ray_y);
+		free(data->player->next_hit);
 		free(data->player);
 		data->player = NULL;
 	}

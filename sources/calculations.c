@@ -6,91 +6,11 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/23 18:31:04 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:19:58 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-double	hit(t_map *map, t_player *player, int i)
-{
-	t_vector	vecX;
-	t_vector	vecY;
-	int			box_x;
-	int			box_y;
-
-	// vecX[0] = floor((player->pos[0] + 1);
-	vecX[0] = player->pos[0] + (player->sdX * cos(player->ray_angle));
-	vecX[1] = player->pos[1] + (player->sdX * sin(player->ray_angle));
-	vecY[0] = player->pos[0] + (player->sdY * cos(player->ray_angle));
-	vecY[1] = player->pos[1] + (player->sdY * sin(player->ray_angle));
-	// if ((player->ray_angle < PI / 2) || (player->ray_angle > 3 * PI / 2))
-		box_x = abs((int)vecX[0]);
-	// else
-		// box_x = abs((int)vecX[0]) - 1;
-	box_y = abs((int)vecX[1]);
-	printf("vecX[0] = %f et map->width = %d, vecX[1] = %f et map->height = %d\n", vecX[0], map->width, vecX[1], map->height);
-	printf("vecY[0] = %f, vecY[1] = %f\n", vecY[0], vecY[1]);
-	printf("player->ray_angle = %f\n", player->ray_angle);
-	if (fabs(vecX[0]) < (map->width - 1) && fabs(vecX[1]) < (map->height - 1)
-		&& map->map[box_y][box_x] == '1')
-	{
-		printf("hit!\n");
-		player->next_hit[i][0] = (int)vecX[0];		// a supprimer 
-		player->next_hit[i][1] = vecX[1];		// a supprimer 
-		return (player->sdX);
-	}
-	box_x = abs((int)vecY[0]);
-	// if (player->ray_angle < PI)
-		box_y = abs((int)vecY[1]);
-	// else
-		// box_y = abs((int)vecY[1]) - 1;
-	if (fabs(vecY[0]) < map->width && fabs(vecY[1]) < map->height 
-		&& map->map[box_y][box_x] == '1')
-	{
-		printf("hit!\n");
-		player->next_hit[i][0] = vecY[0];		// a supprimer 
-		player->next_hit[i][1] = (int)vecY[1];		// a supprimer 
-		return (player->sdY);
-	}
-	return (0);
-}
-
-// double	hit(t_map *map, t_player *player, int i)
-// {
-// 	t_vector	vecX;
-// 	t_vector	vecY;
-// 	double		hit_ler;
-
-// 	hit_ler = 0;
-// 	vecX[0] = player->pos[0] + (player->sdX * cos(player->ray_angle));
-// 	vecX[1] = player->pos[1] + (player->sdX * sin(player->ray_angle));
-// 	vecY[0] = player->pos[0] + (player->sdY * cos(player->ray_angle));
-// 	vecY[1] = player->pos[1] + (player->sdY * sin(player->ray_angle));
-// 	printf("vecX[0] = %f et map->width = %d, vecX[1] = %f et map->height = %d\n", vecX[0], map->width, vecX[1], map->height);
-// 	printf("vecY[0] = %f, vecY[1] = %f\n", vecY[0], vecY[1]);
-// 	printf("player->ray_angle = %f\n", player->ray_angle);
-// 	if (vecX[0] > 0 && vecX[1] > 0
-// 		&& vecX[0] < (map->width - 1) && vecX[1] < (map->height - 1)
-// 		&& map->map[(int)vecX[1]][(int)vecX[0]] == '1')
-// 	{
-// 		printf("hit!\n");
-// 		player->next_hit[i][0] = (int)vecX[0];		// a supprimer 
-// 		player->next_hit[i][1] = vecX[1];		// a supprimer 
-// 		hit_ler = player->sdX;
-// 	}
-// 	if (vecY[0] > 0 && vecY[1] > 0
-// 		&& vecY[0] < (map->width - 1) && vecY[1] < (map->height - 1)
-// 		&& map->map[(int)vecY[1]][(int)vecY[0]] == '1')
-// 	{
-// 		printf("hit!\n");
-// 		player->next_hit[i][0] = vecY[0];		// a supprimer 
-// 		player->next_hit[i][1] = (int)vecY[1];		// a supprimer 
-// 		if (player->sdX < player->sdY)
-// 			hit_ler = player->sdY;
-// 	}
-// 	return (hit_ler);
-// }
 
 double	correct_angle(double angle)
 {
@@ -101,53 +21,100 @@ double	correct_angle(double angle)
 	return (angle);
 }
 
+// void	get_ray_x_max(int i, t_player *player, t_map *map)
+void	get_ray_x_max(int i, t_player *player)
+{
+	int j;
+	// int	box[2];
+
+	j = 0;
+	while (j < 2)
+	// box[0] = (int)player->pos[0];
+	// box[1] = (int)player->pos[1];
+	// printf("x = %d, y = %d, sur la map = %d\n", box[0], box[1], map->map[box[1]][box[0]]);
+	// while (map->map[box[1]][box[0]] != '1')
+	{
+		// printf("x = %d, y = %d, sur la map = %d\n", box[0], box[1], map->map[box[1]][box[0]]);
+		if ((player->ray_angle == PI / 2) || (player->ray_angle == 3 * PI / 2)) 	// if is looking straight up or down
+		{
+			player->ray_x[i][0] = 0;
+			player->sdX = 1000;
+			player->ray_x[i][1] = 0;
+		}
+		else
+		{
+			if ((player->ray_angle < PI / 2) || (player->ray_angle > 3 * PI / 2))	// if is looking right
+				player->ray_x[i][0] = floor(player->pos[0]) + j + 1;
+			else																	// if is looking left
+				player->ray_x[i][0] = floor(player->pos[0]) - j;
+			player->sdX = (player->ray_x[i][0] - player->pos[0]) / (cos(player->ray_angle)); // when looking left, sdX is negative
+			player->ray_x[i][1] = player->pos[1] + (player->sdX * (sin(player->ray_angle)));
+			// if ((player->ray_angle < PI / 2) || (player->ray_angle > 3 * PI / 2))	// if is looking right
+			// 	box[0] = (int)player->ray_x[i][0];
+			// else																	// if is looking left
+			// 	box[0] = (int)player->ray_x[i][0] - 1;
+			// box[1] = (int)player->ray_x[i][1];
+		}
+		j++;
+	}
+	// printf("TROUVE x = %d, y = %d, sur la map = %d\n", box[0], box[1], map->map[box[1]][box[0]]);
+}
+
+void	get_ray_y_max(int i, t_player *player)
+{
+	if ((player->ray_angle == PI) || (player->ray_angle == 0)) 	// if is looking straight right or left
+	{
+		player->ray_y[i][1] = 0;
+		player->sdY = 1000;
+		player->ray_y[i][0] = 0;
+	}
+	else
+	{
+		if (player->ray_angle < PI)									// if is looking up
+			player->ray_y[i][1] = floor(player->pos[1]) + 1;
+		else														// if is looking down
+			player->ray_y[i][1] = floor(player->pos[1]);
+		player->sdY = (player->ray_y[i][1] - player->pos[1]) / sin(player->ray_angle); // when looking down, sdY is negative
+		player->ray_y[i][0] = player->pos[0] + (player->sdY * (cos(player->ray_angle)));
+	}
+}
+
+void	compare_rays(int i, t_player *player)
+{
+	if (player->sdX < player->sdY)
+	{
+		player->next_hit[i][0] = player->ray_x[i][0];
+		player->next_hit[i][1] = player->ray_x[i][1];
+	}
+	else
+	{
+		player->next_hit[i][0] = player->ray_y[i][0];
+		player->next_hit[i][1] = player->ray_y[i][1];
+	}													
+}
+
 void	get_view_points(t_player *player, t_map *map)
 {
-	int	i;
-	int	hit_ler;
 	double	delta;
+	int		i;
 
+	printf("%d\n", map->width);
+	delta = 0.2;
 	player->dir[0] = player->pos[0] + player->dist * cos(player->angle);
 	player->dir[1] = player->pos[1] + player->dist * sin(player->angle);
 	player->ray_angle = correct_angle(player->angle - player->plane);
-	i = 0;
 	delta = 0.2;
-	printf("player->angle = %f, player->plane = %f\n", player->angle, player->plane);
-	printf("player->ray_angle = %f\n", player->ray_angle);
-	printf("on compare %f a : %f\n", player->ray_angle - player->angle, (player->plane * 2));
-	while ((i * delta) < (player->plane * 2))
-	// while (player->ray_angle - player->angle < (player->plane * 2))
+	i = 0;
+	while ((delta * i) < (player->plane * 2))
 	{
-		printf("kikou\n");
-		if ((player->ray_angle < PI / 2) || (player->ray_angle > 3 * PI / 2))
-			player->sdX = floor((player->pos[0] + 1 - player->pos[0]) / cos(player->ray_angle));
-		else if ((player->ray_angle != PI / 2) && (player->ray_angle != 3 * PI / 2))
-			player->sdX = floor((player->pos[0] - player->pos[0]) / cos(player->ray_angle));
-		if (player->ray_angle < PI)
-			player->sdY = floor((player->pos[1] + 1 - player->pos[1]) / sin(player->ray_angle));
-		else if ((player->ray_angle != PI) && (player->ray_angle != 0))
-			player->sdY = floor((player->pos[1] - player->pos[1]) / sin(player->ray_angle));
-		player->ddX = 1 / cos(player->ray_angle);
-		player->ddY = 1 / sin(player->ray_angle);
-		hit_ler = hit(map, player, i);
-		while (!hit_ler)
-		{
-			player->sdX += player->ddX;
-			player->sdY += player->ddY;
-			hit_ler = hit(map, player, i);
-		}
-		// calculate_wall_size(hit_ler, i);
+		// get_ray_x_max(i, player, map);
+		get_ray_x_max(i, player);
+		get_ray_y_max(i, player);
+		compare_rays(i, player);
+
+
+				
 		player->ray_angle = correct_angle(player->ray_angle + delta);
 		i++;
 	}
-
-	player->plane_right_X = player->pos[0] + (player->dist * cos(player->angle + player->plane));
-	player->plane_right_Y = player->pos[1] + (player->dist * sin(player->angle + player->plane));
-	player->plane_left_X = player->pos[0] + (player->dist * cos(player->angle - player->plane));
-	player->plane_left_Y = player->pos[1] + (player->dist * sin(player->angle - player->plane));
 }
-
-	// player->sideDist_X_X = (int)player->pos[0] + 1;
-	// player->sideDist_X_Y = player->pos[1] + (cos(player->angle) * player->sideDist_X_X / sin(player->angle));
-	// player->sideDist_Y_Y = (int)player->pos[1] + 1;
-	// player->sideDist_Y_X = player->pos[0] + (cos(player->angle) * player->sideDist_Y_Y / sin(player->angle));

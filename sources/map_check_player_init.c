@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_player_init.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:36:17 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/23 13:14:32 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/24 12:42:29 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	get_player_data(t_player *player, int i, int j, char direction)
 {
 	player->pos[0] = (double)j + 0.5;
 	player->pos[1] = (double)i + 0.5;
+	printf("Player pos X = %f, player pos Y = %f\n", player->pos[0], player->pos[1]);
 	if (direction == 'N')
 		player->angle = PI / 2;
 	else if (direction == 'S')
