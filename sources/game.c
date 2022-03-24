@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:56:55 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/23 15:10:58 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:13:43 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,30 +60,51 @@ int	player_funct(t_data *data)
 		}
 		y++;
 	}
-	y = 0;
-	while (y < 5)
-	{
-		x = 0;
-		while (x < 5)
-		{
-			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->plane_right_X * 60 + x, data->player->plane_right_Y * 60 + y, 0xffffff);
-			x++;
-		}
-		y++;
-	}
-	y = 0;
-	while (y < 5)
-	{
-		x = 0;
-		while (x < 5)
-		{
-			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->plane_left_X * 60 + x, data->player->plane_left_Y * 60 + y, 0xffffff);
-			x++;
-		}
-		y++;
-	}
+	// y = 0;
+	// while (y < 5)
+	// {
+	// 	x = 0;
+	// 	while (x < 5)
+	// 	{
+	// 		mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->ray_y[0] * 60 + x, data->player->ray_y[1] * 60 + y, 0xffffff);
+	// 		x++;
+	// 	}
+	// 	y++;
+	// }
+	// k = 0;
+	// while (k < 4)
+	// {
+	// 	y = 0;
+	// 	while (y < 5)
+	// 	{
+	// 		x = 0;
+	// 		while (x < 5)
+	// 		{
+	// 			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->ray_x[k][0] * 60 + x, data->player->ray_x[k][1] * 60 + y, 0x000000);
+	// 			x++;
+	// 		}
+	// 		y++;
+	// 	}
+	// 	k++;
+	// }
+	// k = 0;
+	// while (k < 4)
+	// {
+	// 	y = 0;
+	// 	while (y < 5)
+	// 	{
+	// 		x = 0;
+	// 		while (x < 5)
+	// 		{
+	// 			mlx_pixel_put(data->game->mlx_ptr, data->game->win_ptr, data->player->ray_y[k][0] * 60 + x, data->player->ray_y[k][1] * 60 + y, 0x000000);
+	// 			x++;
+	// 		}
+	// 		y++;
+	// 	}
+	// 	k++;
+	// }
 	k = 0;
-	while (k < 7)
+	while (k < 8)
 	{
 		y = 0;
 		while (y < 5)

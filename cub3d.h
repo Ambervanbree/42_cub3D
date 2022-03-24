@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/23 15:11:02 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/24 15:50:24 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,8 @@ typedef struct s_player
 	double		sdY;
 	double		ddX;
 	double		ddY;
-	double		plane_right_X;
-	double		plane_right_Y;
-	double		plane_left_X;
-	double		plane_left_Y;
+	t_vector	*ray_x;
+	t_vector	*ray_y;
 	// double		sideDist_X_X;
 	// double		sideDist_X_Y;
 	// double		sideDist_Y_X;
