@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/19 19:17:22 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:56:19 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	ft_free_game(t_game *game)
 {
 	if (game->pic_back)
-		mlx_destroy_image(game->mlx_ptr, game->pic_back);
+		mlx_destroy_image(game->twod_mlx, game->pic_back);
 	if (game->pic_wall)
-		mlx_destroy_image(game->mlx_ptr, game->pic_wall);
-	if (game->win_ptr)
-		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	if (game->mlx_ptr)
+		mlx_destroy_image(game->twod_mlx, game->pic_wall);
+	if (game->twod_win)
+		mlx_destroy_window(game->twod_mlx, game->twod_win);
+	if (game->twod_mlx)
 	{
-		mlx_destroy_display(game->mlx_ptr);
-		free(game->mlx_ptr);
+		mlx_destroy_display(game->twod_mlx);
+		free(game->twod_mlx);
 	}
 }
 

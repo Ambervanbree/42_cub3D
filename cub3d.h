@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/24 15:50:24 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:57:05 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,16 @@ typedef double	t_vector[2];
 
 typedef struct s_game
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*twod_mlx;
+	void	*twod_win;
 	void	*floor_tile;
 	void	*wall_tile;
+	float	*two_d_ray;
+	void	*threed_mlx;
+	void	*threed_win;
+    int     pix_nb_x;
+    int     pix_nb_y;
+	float	*three_d_ray;
 }	t_game;
 
 typedef struct s_player
@@ -65,11 +71,6 @@ typedef struct s_player
 	double		ddY;
 	t_vector	*ray_x;
 	t_vector	*ray_y;
-	// double		sideDist_X_X;
-	// double		sideDist_X_Y;
-	// double		sideDist_Y_X;
-	// double		sideDist_Y_Y;
-
 }	t_player;
 
 typedef struct s_map
@@ -110,7 +111,7 @@ int		check_map_init_player(t_data *data);
 //game play
 void	init_game(t_data *data);
 int		key_event(int keypress, t_data *data);
-void	get_view_points(t_player *player, t_map *map);
+void	get_view_points(t_player *player, t_map *map, t_game *game);
 double	correct_angle(double angle);
 
 #endif

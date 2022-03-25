@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:04:08 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/24 14:54:28 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:46:29 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	key_event(int keypress, t_data *data)
 		rotate_right(data->player);
 	if (keypress == LEFT)
 		rotate_left(data->player);
-	get_view_points(data->player, data->map);
+	get_view_points(data->player, data->map, data->game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/24 15:51:22 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:01:32 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,19 @@ void	init_player_struct(t_player *player)
 	player->angle = 100;
 	player->dist = 2;
 	player->plane = 11 * PI / 60;
-	// player->plane_right_X = 0;
-	// player->plane_right_Y = 0;
-	// player->plane_left_X = 0;
-	// player->plane_left_Y = 0;
-	player->ray_x = malloc(8 * sizeof(t_vector));
-	player->ray_y = malloc(8 * sizeof(t_vector));
-	player->next_hit = malloc(8 * sizeof(t_vector));
-	// player->sideDist_X_X = 0;
-	// player->sideDist_X_Y = 0;
-	// player->sideDist_Y_X = 0;
-	// player->sideDist_Y_Y = 0;
+	player->ray_x = malloc(1000 * sizeof(t_vector));		// !!! adapter la size au nombre de points!!!
+	player->ray_y = malloc(1000 * sizeof(t_vector));		// !!! adapter la size au nombre de points!!!
+	player->next_hit = malloc(1000 * sizeof(t_vector));	// !!! adapter la size au nombre de points!!!
 }
 
 void	init_game_struct(t_game *game)
 {
-	game->mlx_ptr = NULL;
-	game->win_ptr = NULL;
+	game->twod_mlx = NULL;
+	game->twod_win = NULL;
 	game->floor_tile = NULL;
 	game->wall_tile = NULL;
+	game->two_d_ray = malloc(1000 * sizeof(float));
+	game->three_d_ray = malloc(1000 * sizeof(float));
 }
 
 int	init_structures(t_data *data)

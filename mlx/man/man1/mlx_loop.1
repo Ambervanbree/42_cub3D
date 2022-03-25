@@ -8,7 +8,7 @@ MiniLibX - Handle events
 .fi
 .B mlx_loop
 (
-.I void *mlx_ptr
+.I void *twod_mlx
 );
 
 .nf
@@ -16,7 +16,7 @@ MiniLibX - Handle events
 .fi
 .B mlx_key_hook
 (
-.I void *win_ptr, int (*funct_ptr)(), void *param
+.I void *game, int (*funct_ptr)(), void *param
 );
 
 .nf
@@ -24,7 +24,7 @@ MiniLibX - Handle events
 .fi
 .B mlx_mouse_hook
 (
-.I void *win_ptr, int (*funct_ptr)(), void *param
+.I void *game, int (*funct_ptr)(), void *param
 );
 
 .nf
@@ -32,7 +32,7 @@ MiniLibX - Handle events
 .fi
 .B mlx_expose_hook
 (
-.I void *win_ptr, int (*funct_ptr)(), void *param
+.I void *game, int (*funct_ptr)(), void *param
 );
 
 .nf
@@ -40,7 +40,7 @@ MiniLibX - Handle events
 .fi
 .B mlx_loop_hook
 (
-.I void *mlx_ptr, int (*funct_ptr)(), void *param
+.I void *twod_mlx, int (*funct_ptr)(), void *param
 );
 
 .SH X-WINDOW EVENTS
@@ -58,7 +58,7 @@ To receive events, you must use
 (). This function never returns. It is an infinite loop that waits for
 an event, and then calls a user-defined function associated with this event.
 A single parameter is needed, the connection identifier
-.I mlx_ptr
+.I twod_mlx
 (see the
 .B mlx manual).
 
@@ -84,7 +84,7 @@ The three functions
 .I funct_ptr
 is a pointer to the function you want to be called
 when an event occurs. This assignment is specific to the window defined by the
-.I win_ptr
+.I game
 identifier. The
 .I param
 adress will be passed to the function everytime it is called, and should be

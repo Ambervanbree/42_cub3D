@@ -6,10 +6,10 @@
 
 typedef struct s_test
 {
-    void	*mlx_ptr;
-	void	*win_ptr;
-    int     win_nb_x;
-    int     win_nb_y;
+    void	*twod_mlx;
+	void	*twod_win;
+    int     pix_nb_x;
+    int     pix_nb_y;
     int     wall[800];
 }   t_test;
 
@@ -53,41 +53,39 @@ int main(void)
     int     x;
     int     y;
 
-    test.win_nb_x = 800;
-    test.win_nb_y = 600;
-    test.mlx_ptr = mlx_init(&test);
-	test.win_ptr = mlx_new_window(test.mlx_ptr, test.win_nb_x, test.win_nb_y, "cub3D");
+    test.pix_nb_x = 800;
+    test.pix_nb_y = 600;
+    test.twod_mlx = mlx_init(&test);
+	test.twod_win = mlx_new_window(test.twod_mlx, test.pix_nb_x, test.pix_nb_y, "cub3D");
     init_wall(&test);
-    // mlx_put_image_to_window (test.mlx_ptr, test.win_ptr, mlx_xpm_file_to_image(test.mlx_ptr, "./images/ceiling.xpm", &test.win_nb_x, &micuisse), 0, 0);
-    // mlx_put_image_to_window (test.mlx_ptr, test.win_ptr, mlx_xpm_file_to_image(test.mlx_ptr, "./images/floor2.xpm", &test.win_nb_x, &micuisse), 0, 300 * 60);
     y = 0;
-    while (y < test.win_nb_y / 2)
+    while (y < test.pix_nb_y / 2)
     {
         x = -1;
-        while (++x < test.win_nb_x)
+        while (++x < test.pix_nb_x)
         {
-            if (y < (test.win_nb_y / 2 - test.wall[x] / 2))
-                mlx_pixel_put(test.mlx_ptr, test.win_ptr, x, y, CEILING);
+            if (y < (test.pix_nb_y / 2 - test.wall[x] / 2))
+                mlx_pixel_put(test.twod_mlx, test.twod_win, x, y, CEILING);
             else
-                mlx_pixel_put(test.mlx_ptr, test.win_ptr, x, y, WALL);
+                mlx_pixel_put(test.twod_mlx, test.twod_win, x, y, WALL);
         }
         y++;
     }
-    while (y < test.win_nb_y)
+    while (y < test.pix_nb_y)
     {
         x = -1;
-        while (++x < test.win_nb_x)
+        while (++x < test.pix_nb_x)
         {
-            if (y > (test.win_nb_y / 2 + test.wall[x] / 2))
-                mlx_pixel_put(test.mlx_ptr, test.win_ptr, x, y, FLOOR);
+            if (y > (test.pix_nb_y / 2 + test.wall[x] / 2))
+                mlx_pixel_put(test.twod_mlx, test.twod_win, x, y, FLOOR);
             else
-                mlx_pixel_put(test.mlx_ptr, test.win_ptr, x, y, WALL);
+                mlx_pixel_put(test.twod_mlx, test.twod_win, x, y, WALL);
         }
         y++;
     }
-    mlx_loop_hook(test.mlx_ptr, &screen_display, NULL);
-    mlx_hook(test.win_ptr, 2, 1L<<0, &key_event, NULL);
-    mlx_hook(test.win_ptr, 17, 0, &redcross_exit, NULL);
-    mlx_loop(test.mlx_ptr);
+    mlx_loop_hook(test.twod_mlx, &screen_display, NULL);
+    mlx_hook(test.twod_win, 2, 1L<<0, &key_event, NULL);
+    mlx_hook(test.twod_win, 17, 0, &redcross_exit, NULL);
+    mlx_loop(test.twod_mlx);
     return (0);
 }
