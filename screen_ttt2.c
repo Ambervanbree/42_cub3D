@@ -6,7 +6,7 @@
 
 typedef struct s_test
 {
-    void	*twod_mlx;
+    void	*threed_mlx;
 	void	*twod_win;
     int     pix_nb_x;
     int     pix_nb_y;
@@ -55,8 +55,8 @@ int main(void)
 
     test.pix_nb_x = 800;
     test.pix_nb_y = 600;
-    test.twod_mlx = mlx_init(&test);
-	test.twod_win = mlx_new_window(test.twod_mlx, test.pix_nb_x, test.pix_nb_y, "cub3D");
+    test.threed_mlx = mlx_init(&test);
+	test.twod_win = mlx_new_window(test.threed_mlx, test.pix_nb_x, test.pix_nb_y, "cub3D");
     init_wall(&test);
     y = 0;
     while (y < test.pix_nb_y / 2)
@@ -65,9 +65,9 @@ int main(void)
         while (++x < test.pix_nb_x)
         {
             if (y < (test.pix_nb_y / 2 - test.wall[x] / 2))
-                mlx_pixel_put(test.twod_mlx, test.twod_win, x, y, CEILING);
+                mlx_pixel_put(test.threed_mlx, test.twod_win, x, y, CEILING);
             else
-                mlx_pixel_put(test.twod_mlx, test.twod_win, x, y, WALL);
+                mlx_pixel_put(test.threed_mlx, test.twod_win, x, y, WALL);
         }
         y++;
     }
@@ -77,15 +77,15 @@ int main(void)
         while (++x < test.pix_nb_x)
         {
             if (y > (test.pix_nb_y / 2 + test.wall[x] / 2))
-                mlx_pixel_put(test.twod_mlx, test.twod_win, x, y, FLOOR);
+                mlx_pixel_put(test.threed_mlx, test.twod_win, x, y, FLOOR);
             else
-                mlx_pixel_put(test.twod_mlx, test.twod_win, x, y, WALL);
+                mlx_pixel_put(test.threed_mlx, test.twod_win, x, y, WALL);
         }
         y++;
     }
-    mlx_loop_hook(test.twod_mlx, &screen_display, NULL);
-    mlx_hook(test.twod_win, 2, 1L<<0, &key_event, NULL);
-    mlx_hook(test.twod_win, 17, 0, &redcross_exit, NULL);
-    mlx_loop(test.twod_mlx);
+    // mlx_loop_hook(test.threed_mlx, &screen_display, NULL);
+    // mlx_hook(test.twod_win, 2, 1L<<0, &key_event, NULL);
+    // mlx_hook(test.twod_win, 17, 0, &redcross_exit, NULL);
+    // mlx_loop(test.threed_mlx);
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/25 15:48:30 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:41:17 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	get_ray_x_max(int i, t_player *player, t_map *map)
 	}
 }
 
-void	get_ray_y_max(int i, t_player *player, t_map *map)
+void	get_ray_y_max(int ray_nr, t_player *player, t_map *map)
 {
 	int	box[2];
 	int	j;
@@ -73,54 +73,78 @@ void	get_ray_y_max(int i, t_player *player, t_map *map)
 		{
 			if (player->ray_angle < PI)									// if is looking up
 			{
-				player->ray_y[i][1] = floor(player->pos[1]) + j + 1;
-				box[1] = (int)player->ray_y[i][1];
+				player->ray_y[ray_nr][1] = floor(player->pos[1]) + j + 1;
+				box[1] = (int)player->ray_y[ray_nr][1];
 			}
 			else														// if is looking down
 			{
-				player->ray_y[i][1] = floor(player->pos[1]) - j;
-				box[1] = (int)player->ray_y[i][1] - 1;
+				player->ray_y[ray_nr][1] = floor(player->pos[1]) - j;
+				box[1] = (int)player->ray_y[ray_nr][1] - 1;
 			}
-			player->sdY = (player->ray_y[i][1] - player->pos[1]) / sin(player->ray_angle);
-			player->ray_y[i][0] = player->pos[0] + (player->sdY * (cos(player->ray_angle)));
-			box[0] = (int)player->ray_y[i][0];
+			player->sdY = (player->ray_y[ray_nr][1] - player->pos[1]) / sin(player->ray_angle);
+			player->ray_y[ray_nr][0] = player->pos[0] + (player->sdY * (cos(player->ray_angle)));
+			box[0] = (int)player->ray_y[ray_nr][0];
 		}
 		j++;
 	}
 }
 
-void	compare_rays(int i, t_player *player, t_game *game)
+void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 {
+	int	a;
+	int	i;
+
 	if (fabs(player->sdX) < fabs(player->sdY))
 	{
-		player->next_hit[i][0] = player->ray_x[i][0];
-		player->next_hit[i][1] = player->ray_x[i][1];
-		game->two_d_ray[i] = fabs(player->sdX);
+		player->next_hit[ray_nr][0] = player->ray_x[ray_nr][0];
+		player->next_hit[ray_nr][1] = player->ray_x[ray_nr][1];
+		game->twod_ray[ray_nr] = fabs(player->sdX);
 	}
 	else
 	{
-		player->next_hit[i][0] = player->ray_y[i][0];
-		player->next_hit[i][1] = player->ray_y[i][1];
-		game->two_d_ray[i] = fabs(player->sdY);
-	}													
+		player->next_hit[ray_nr][0] = player->ray_y[ray_nr][0];
+		player->next_hit[ray_nr][1] = player->ray_y[ray_nr][1];
+		game->twod_ray[ray_nr] = fabs(player->sdY);
+	}
+	a = (int)(game->pix_nb_x / total_rays);
+	// if ((ray_nr * a + 2) < game->pix_nb_x - 1)		//je l'ai garde parce que je trouve ca joli mais bon
+	// {
+	// 	game->threed_ray[ray_nr * a] = 1000 / game->twod_ray[ray_nr];
+	// 	game->threed_ray[ray_nr * a + 1] = game->threed_ray[ray_nr * a];
+	// 	game->threed_ray[ray_nr * a + 2] = game->threed_ray[ray_nr * a];
+	// 	game->threed_ray[ray_nr * a + 3] = game->threed_ray[ray_nr * a];
+	// 	game->threed_ray[ray_nr * a + 4] = game->threed_ray[ray_nr * a];										
+	// }
+	if ((ray_nr * a) < game->pix_nb_x - 1)
+	{
+		game->threed_ray[ray_nr * a] = 1000 / game->twod_ray[ray_nr];
+		i = 0;
+		while (i < a)
+		{
+			game->threed_ray[ray_nr * a + i] = game->threed_ray[ray_nr * a];	
+			i++;										
+		}								
+	}
 }
 
 void	get_view_points(t_player *player, t_map *map, t_game *game)
 {
 	double	delta;
-	int		i;
+	int		ray_nr;
+	int		total_rays;
 
 	delta = 0.01;
 	player->dir[0] = player->pos[0] + player->dist * cos(player->angle);
 	player->dir[1] = player->pos[1] + player->dist * sin(player->angle);
 	player->ray_angle = correct_angle(player->angle - player->plane);
-	i = 0;
-	while ((delta * i) < (player->plane * 2))
+	total_rays = (int)(player->plane * 2) / delta;
+	ray_nr = 0;
+	while ((delta * ray_nr) < (player->plane * 2))
 	{
-		get_ray_x_max(i, player, map);
-		get_ray_y_max(i, player, map);
-		compare_rays(i, player, game);
+		get_ray_x_max(ray_nr, player, map);
+		get_ray_y_max(ray_nr, player, map);
+		compare_rays(total_rays, ray_nr, player, game);
 		player->ray_angle = correct_angle(player->ray_angle + delta);
-		i++;
+		ray_nr++;
 	}
 }

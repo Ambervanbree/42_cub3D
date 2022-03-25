@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/25 16:01:08 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:20:21 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_free_game(t_game *game)
 		mlx_destroy_display(game->twod_mlx);
 		free(game->twod_mlx);
 	}
-	free(game->two_d_ray);
-	free(game->three_d_ray);
+	free(game->twod_ray);
+	free(game->threed_ray);
 }
 
 void	ft_free_map(t_map *map)

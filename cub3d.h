@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/25 15:57:05 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:32:29 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define PIC_BACK "./images/floor.xpm"
 # define PIC_WALL "./images/wall3.xpm"
 # define PI 3.14159265358979323846
+# define CEILING 0x00ffff
+# define FLOOR   0x00ff00
+# define WALL    0x999999
 
 enum e_enum
 {
@@ -47,12 +50,12 @@ typedef struct s_game
 	void	*twod_win;
 	void	*floor_tile;
 	void	*wall_tile;
-	float	*two_d_ray;
+	float	*twod_ray;
 	void	*threed_mlx;
 	void	*threed_win;
     int     pix_nb_x;
     int     pix_nb_y;
-	float	*three_d_ray;
+	float	*threed_ray;
 }	t_game;
 
 typedef struct s_player
