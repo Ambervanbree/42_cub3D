@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/25 18:03:57 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/26 11:03:13 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,14 @@ void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 	{
 		player->next_hit[ray_nr][0] = player->ray_x[ray_nr][0];
 		player->next_hit[ray_nr][1] = player->ray_x[ray_nr][1];
+		//player->sdX = cos(player->ray_angle * fabs(player->sdX));
 		game->twod_ray[ray_nr] = fabs(player->sdX);
 	}
 	else
 	{
 		player->next_hit[ray_nr][0] = player->ray_y[ray_nr][0];
 		player->next_hit[ray_nr][1] = player->ray_y[ray_nr][1];
+		//player->sdY = cos(player->ray_angle * fabs(player->sdY));
 		game->twod_ray[ray_nr] = fabs(player->sdY);
 	}
 	// pix_nb_x is the total number of pixels on the x axis of the screen

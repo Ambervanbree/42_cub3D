@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/25 16:48:21 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/26 10:53:43 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	init_game_struct(t_game *game)
 	game->twod_win = NULL;
 	game->floor_tile = NULL;
 	game->wall_tile = NULL;
-	game->pix_nb_x = 800;
-    game->pix_nb_y = 600;
+	game->pix_nb_x = SCR_WIDTH;
+    game->pix_nb_y = SCR_HEIGHT;
 	game->twod_ray = malloc(1000 * sizeof(float));
 	game->threed_ray = malloc(game->pix_nb_x * sizeof(float));
 }

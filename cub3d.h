@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/25 16:32:29 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/26 10:53:29 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@
 
 # define PIC_BACK "./images/floor.xpm"
 # define PIC_WALL "./images/wall3.xpm"
+# define SCR_WIDTH 800
+# define SCR_HEIGHT 600
 # define PI 3.14159265358979323846
 # define CEILING 0x00ffff
-# define FLOOR   0x00ff00
-# define WALL    0x999999
+# define FLOOR 0x00ff00
+# define WALL 0x999999
 
 enum e_enum
 {
