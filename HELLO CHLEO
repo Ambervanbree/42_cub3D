@@ -1,0 +1,25 @@
+Hi hi!!
+
+So I did not have the best day today. It's a shame. 
+
+I first tried to fix the fish eye effect and it took me FOREVER,
+but I didn't manage. So I commented everything and gave up. 
+My idea is that if we have a certain angle the sdX and sdY
+are going to be the cos(angle) or the sin(angle) * themselves.
+But I don't manage to find in which situation it's which. 
+And we're going to need this to find the right textures too.
+
+Then I tried to draw an image with the walls and then display
+it all in once, in stead of looping continuously. I think this
+is important, because it already happened that my screen was 
+stuck when I tried to turn both windows. This sort of worked, 
+but there's still some errors. It bugs when we walk into a wall
+for example. I have kept the old way of displaying in game_prev.c
+and the new is now in game.c.
+
+And I really wanted to have a look at reversing the textures
+into the walls, but I spent to much time on trying to make
+things work that wouldn't :(. I'm really disappointed about
+this stupid day.
+
+HAVE A GOOD DAY TODAY and hopefully Tuesday I can be of better use.

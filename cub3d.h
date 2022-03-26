@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/26 10:53:29 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/26 16:26:15 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,20 @@ enum e_enum
 
 typedef double	t_vector[2];
 
+typedef struct	s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		end;
+}	t_img;
+
 typedef struct s_game
 {
+	void	*mlx;
+	void	*win;
+	t_img	*screen;
 	void	*twod_mlx;
 	void	*twod_win;
 	void	*floor_tile;
@@ -114,9 +126,12 @@ char	*realloc_line(char *line, int size);
 int		check_map_init_player(t_data *data);
 
 //game play
-void	init_game(t_data *data);
+//int		init_game(t_data *data, t_game *game);
+int		init_game(t_data *data, t_game *game);
 int		key_event(int keypress, t_data *data);
 void	get_view_points(t_player *player, t_map *map, t_game *game);
 double	correct_angle(double angle);
+void	draw_background(t_data *data, t_game *game, t_img *img);
+int		display(t_data *data);
 
 #endif

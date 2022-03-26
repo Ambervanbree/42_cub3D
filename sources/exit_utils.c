@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/25 17:20:21 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/26 16:54:29 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,20 @@
 void	ft_free_game(t_game *game)
 {
 	if (game->floor_tile)
-		mlx_destroy_image(game->twod_mlx, game->floor_tile);
+		mlx_destroy_image(game->mlx, game->floor_tile);
 	if (game->wall_tile)
-		mlx_destroy_image(game->twod_mlx, game->wall_tile);
-	if (game->twod_win)
-		mlx_destroy_window(game->twod_mlx, game->twod_win);
-	if (game->twod_mlx)
+		mlx_destroy_image(game->mlx, game->wall_tile);
+	// if (game->screen)
+	// 	mlx_destroy_image(game->mlx, game->screen);
+	// free(game->screen);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if  (game->screen)
+		free(game->screen);
+	if (game->mlx)
 	{
-		mlx_destroy_display(game->twod_mlx);
-		free(game->twod_mlx);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
 	}
 	free(game->twod_ray);
 	free(game->threed_ray);

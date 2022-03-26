@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/26 10:53:43 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/26 15:25:45 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	init_game_struct(t_game *game)
 	game->wall_tile = NULL;
 	game->pix_nb_x = SCR_WIDTH;
     game->pix_nb_y = SCR_HEIGHT;
+	game->screen = malloc(1 * sizeof(t_img));
 	game->twod_ray = malloc(1000 * sizeof(float));
 	game->threed_ray = malloc(game->pix_nb_x * sizeof(float));
 }
@@ -74,6 +75,7 @@ int	main(int argc, char *argv[])
 	if (!check_map_init_player(&data))
 		free_and_exit(&data, 1);
 //	print_map(data.map);
-	init_game(&data);
+	if (!init_game(&data, data.game))
+		free_and_exit(&data, 1);
 	free_and_exit(&data, 0);
 }

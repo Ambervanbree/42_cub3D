@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/26 11:03:13 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:19:14 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,23 +89,46 @@ void	get_ray_y_max(int ray_nr, t_player *player, t_map *map)
 	}
 }
 
+// void	correction_fish_eye(t_player *player)
+// {
+// 	// if (player->ray_angle < PI / 2)
+// 	// {
+// 	// 	player->sdX = cos(player->ray_angle) * fabs(player->sdX);
+// 	// 	player->sdY = sin(player->ray_angle) * fabs(player->sdY);
+// 	// }
+// 	// else if (player->ray_angle < PI)
+// 	// {
+// 	// 	player->sdX = cos(player->ray_angle) * fabs(player->sdX);
+// 	// 	player->sdY = sin(player->ray_angle) * fabs(player->sdY);
+// 	// }
+// 	// else if (player->ray_angle < PI + PI / 2)
+// 	// {
+// 	// 	player->sdX = sin(player->ray_angle) * fabs(player->sdX);
+// 	// 	player->sdY = cos(player->ray_angle) * fabs(player->sdY);
+// 	// }
+// 	// else
+// 	// {
+// 	// 	player->sdX = cos(player->ray_angle) * fabs(player->sdX);
+// 	// 	player->sdY = sin(player->ray_angle) * fabs(player->sdY);
+// 	// }
+// }
+
 void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 {
 	int	a;
 	int	i;
 
+	// correction_fish_eye(player);
 	if (fabs(player->sdX) < fabs(player->sdY))
 	{
 		player->next_hit[ray_nr][0] = player->ray_x[ray_nr][0];
 		player->next_hit[ray_nr][1] = player->ray_x[ray_nr][1];
-		//player->sdX = cos(player->ray_angle * fabs(player->sdX));
 		game->twod_ray[ray_nr] = fabs(player->sdX);
 	}
 	else
 	{
 		player->next_hit[ray_nr][0] = player->ray_y[ray_nr][0];
 		player->next_hit[ray_nr][1] = player->ray_y[ray_nr][1];
-		//player->sdY = cos(player->ray_angle * fabs(player->sdY));
 		game->twod_ray[ray_nr] = fabs(player->sdY);
 	}
 	// pix_nb_x is the total number of pixels on the x axis of the screen
@@ -118,14 +141,14 @@ void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 	// ones will be small), and multiplied by 1000 because it looks good like this
 	// but I believe we should establish a more adapted variable 
 	// (that would depend on the screen's height for example)
-		game->threed_ray[ray_nr * a] = 1 / game->twod_ray[ray_nr] * 1000;
+		game->threed_ray[ray_nr * a] = 1 / game->twod_ray[ray_nr] * 100;
 	// And finally I draw each (2D equivalent) ray "a" times
 		i = 0;
 		while (i < a)
 		{
 			game->threed_ray[ray_nr * a + i] = game->threed_ray[ray_nr * a];	
-			i++;										
-		}								
+			i++;									
+		}
 	}
 	// Kept this version because it's pretty but it's useless :
 	// if ((ray_nr * a + 4) < game->pix_nb_x - 1)
