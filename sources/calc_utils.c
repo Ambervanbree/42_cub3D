@@ -3,7 +3,7 @@
 int	east_facing(double angle)
 {
 	// I mean only the part from corner to corner
-	if (angle < PI / 4 || angle > 2 * PI - PI / 4)
+	if (angle < PI / 4 || angle > (2 * PI - PI / 4))
 		return (1);
 	return (0);
 }
@@ -11,7 +11,7 @@ int	east_facing(double angle)
 int	west_facing(double angle)
 {
 	// I mean only the part from corner to corner
-	if (angle > PI - PI / 4) && angle < PI + PI / 4))
+	if (angle > (PI - PI / 4) && angle < (PI + PI / 4))
 		return (1);
 	return (0);	
 }
