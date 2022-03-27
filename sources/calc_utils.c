@@ -1,3 +1,5 @@
+#include "cub3d.h"
+
 int	east_facing(double angle)
 {
 	// I mean only the part from corner to corner
