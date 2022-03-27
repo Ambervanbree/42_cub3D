@@ -89,46 +89,25 @@ void	get_ray_y_max(int ray_nr, t_player *player, t_map *map)
 	}
 }
 
-// void	correction_fish_eye(t_player *player)
-// {
-// 	// if (player->ray_angle < PI / 2)
-// 	// {
-// 	// 	player->sdX = cos(player->ray_angle) * fabs(player->sdX);
-// 	// 	player->sdY = sin(player->ray_angle) * fabs(player->sdY);
-// 	// }
-// 	// else if (player->ray_angle < PI)
-// 	// {
-// 	// 	player->sdX = cos(player->ray_angle) * fabs(player->sdX);
-// 	// 	player->sdY = sin(player->ray_angle) * fabs(player->sdY);
-// 	// }
-// 	// else if (player->ray_angle < PI + PI / 2)
-// 	// {
-// 	// 	player->sdX = sin(player->ray_angle) * fabs(player->sdX);
-// 	// 	player->sdY = cos(player->ray_angle) * fabs(player->sdY);
-// 	// }
-// 	// else
-// 	// {
-// 	// 	player->sdX = cos(player->ray_angle) * fabs(player->sdX);
-// 	// 	player->sdY = sin(player->ray_angle) * fabs(player->sdY);
-// 	// }
-// }
-
 void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 {
 	int	a;
 	int	i;
 
-	// correction_fish_eye(player);
 	if (fabs(player->sdX) < fabs(player->sdY))
 	{
 		player->next_hit[ray_nr][0] = player->ray_x[ray_nr][0];
 		player->next_hit[ray_nr][1] = player->ray_x[ray_nr][1];
+		// fish_eye_correction(player);
+		// get_wall_texture(player);
 		game->twod_ray[ray_nr] = fabs(player->sdX);
 	}
 	else
 	{
 		player->next_hit[ray_nr][0] = player->ray_y[ray_nr][0];
 		player->next_hit[ray_nr][1] = player->ray_y[ray_nr][1];
+		// fish_eye_correction(player);
+		// get_wall_texture(player);
 		game->twod_ray[ray_nr] = fabs(player->sdY);
 	}
 	// pix_nb_x is the total number of pixels on the x axis of the screen
