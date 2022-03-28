@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/26 16:22:14 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/28 17:30:34 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	draw_walls(t_game *game)
 		// printf("threed ray: %f\n", game->threed_ray[y]);
 		start = (SCR_HEIGHT - (int)game->threed_ray[y]) / 2;
 		len = (int)game->threed_ray[y];
-		while (len)
-		{
+		while ((len) && (len < SCR_HEIGHT))
+ 		{
 			ft_pixel_put(game->screen, y, start, WALL);
 			start++;
 			len--;
