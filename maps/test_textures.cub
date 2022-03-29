@@ -2,8 +2,8 @@ NO ./textures/red_bricks.xpm
 SO ./textures/green_bricks.xpm
 WE ./textures/red_bricks.xpm
 EA ./textures/green_bricks.xpm
-F 220,100,0
-C 225,30,0
+F 130,200,0
+C 65,195,230
 
         1111111111111111111111111
         1000000000110000000000001

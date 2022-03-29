@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 10:58:50 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:43:41 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	draw_background(t_data *data, t_game *game, t_img *img)
 {
 	data->game->screen->img = mlx_new_image(game->mlx, SCR_WIDTH, SCR_HEIGHT);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len, &img->end);
-	draw_ceiling(img, CEILING);
-	draw_floor(img, FLOOR);
+	draw_ceiling(img, data->map->ceiling);
+	draw_floor(img, data->map->floor);
 	draw_walls(data->game);
 	mlx_put_image_to_window(game->mlx, game->win, game->screen->img, SCR_WIDTH / 2, 0);
 	// draw_2d_part(data);

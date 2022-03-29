@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 13:12:13 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:35:46 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ typedef struct s_map
 	char			*ea;
 	int				height;
 	int				width;
-	int				*floor;
-	int				*ceiling;
+	int				floor;
+	int				ceiling;
 	char			**map;
 }	t_map;
 
@@ -119,7 +119,7 @@ void	ft_free_map(t_map *map);
 //parser
 int		parse_init_map(t_map *map, char *file);
 char	*get_path_texture(char *line);
-int		*get_color(char *line);
+int		get_color(char *line);
 void	print_map(t_map *map);
 void	get_len(t_map *map, int fd);
 char	*realloc_line(char *line, int size);
