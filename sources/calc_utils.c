@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:00:47 by cproesch          #+#    #+#             */
-/*   Updated: 2022/03/29 11:01:35 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:27:17 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	fish_eye_correction(t_player *player)
 	else
 	{
 		if (east_facing(player->ray_angle) || west_facing(player->ray_angle))
-			player->sdX = cos(player->ray_angle) * player->sdX;
+			player->sdY = cos(player->ray_angle) * player->sdY;
 		else
-			player->sdX = sin(player->ray_angle) * player->sdX;
+			player->sdY = sin(player->ray_angle) * player->sdY;
 	}
 }
 

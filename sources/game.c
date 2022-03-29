@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:30:45 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/26 17:18:27 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:53:56 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	init_window(t_game *game)
 int	display(t_data *data)
 {
 
-	draw_background(data, data->game, data->game->screen);
-	// display_3d_game(data->game);
+	draw_3D_game(data, data->game, data->game->img3D);
+	draw_2D_game(data, data->game);
 	return (0);
 }
 

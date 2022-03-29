@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_player_init.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:36:17 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/24 12:42:29 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:05:27 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	get_player_data(t_player *player, int i, int j, char direction)
 {
 	player->pos[0] = (double)j + 0.5;
 	player->pos[1] = (double)i + 0.5;
-	printf("Player pos X = %f, player pos Y = %f\n", player->pos[0], player->pos[1]);
 	if (direction == 'N')
 		player->angle = PI / 2;
 	else if (direction == 'S')
@@ -44,7 +43,6 @@ int	get_player_data(t_player *player, int i, int j, char direction)
 		player->angle = 0;
 	else if (direction == 'W')
 		player->angle = PI;
-	printf("player angle init: %f\n", player->angle);
 	return (1);
 }
 
@@ -65,6 +63,7 @@ int	check_map_init_player(t_data *data)
 			{
 				if (!get_player_data(data->player, i, j, data->map->map[i][j]))
 					return (error_message("Invalid map", NULL, 0));
+				data->map->map[i][j] = '0';
 			}
 			if (!check_walls(data->map, i, j))
 				return (error_message("Invalid map", NULL, 0));

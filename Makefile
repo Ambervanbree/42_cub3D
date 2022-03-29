@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+         #
+#    By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:51:08 by avan-bre          #+#    #+#              #
-#    Updated: 2022/03/29 11:01:16 by cproesch         ###   ########.fr        #
+#    Updated: 2022/03/29 12:27:19 by avan-bre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ endif
 
 S_DIR	=	sources/
 SRCS	=	main.c exit_utils.c parser.c parse_utils.c map_check_player_init.c \
-			game.c calculations.c keypress.c background.c calc_utils.c
+			game.c calculations.c keypress.c display3D.c display2D.c calc_utils.c
 OBJS	=	$(addprefix $(S_DIR), $(SRCS:.c=.o))
 # OBJS	=	screen_ttt2.c
 

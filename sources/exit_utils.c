@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/26 16:54:29 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/29 12:27:16 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	ft_free_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->floor_tile);
 	if (game->wall_tile)
 		mlx_destroy_image(game->mlx, game->wall_tile);
-	// if (game->screen)
-	// 	mlx_destroy_image(game->mlx, game->screen);
-	// free(game->screen);
+	// if (game->img3D)
+	// 	mlx_destroy_image(game->mlx, game->img3D);
+	// free(game->img3D);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
-	if  (game->screen)
-		free(game->screen);
+	if  (game->img3D)
+		free(game->img3D);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);

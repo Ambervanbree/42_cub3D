@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 11:00:33 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:28:33 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-# define PIC_BACK "./images/floor.xpm"
-# define PIC_WALL "./images/wall3.xpm"
+# define PIC_BACK "./images/floor3.xpm"
+# define PIC_WALL "./images/wall.xpm"
+# define NAME "./images/name.xpm"
 # define SCR_WIDTH 800
 # define SCR_HEIGHT 600
 # define PI 3.14159265358979323846
@@ -59,11 +60,13 @@ typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-	t_img	*screen;
+	t_img	*img3D;
+	t_img	*img2D;
 	void	*twod_mlx;
 	void	*twod_win;
 	void	*floor_tile;
 	void	*wall_tile;
+	void	*name;
 	float	*twod_ray;
 	void	*threed_mlx;
 	void	*threed_win;
@@ -131,8 +134,8 @@ int		init_game(t_data *data, t_game *game);
 int		key_event(int keypress, t_data *data);
 void	get_view_points(t_player *player, t_map *map, t_game *game);
 double	correct_angle(double angle);
-void	draw_background(t_data *data, t_game *game, t_img *img);
-int		display(t_data *data);
+void	draw_3D_game(t_data *data, t_game *game, t_img *img);
 void	fish_eye_correction(t_player *player);
+void	draw_2D_game(t_data *data, t_game *game);
 
 #endif
