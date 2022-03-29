@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 12:09:51 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 13:36:29 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/29 14:56:20 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	file_to_image(t_game *game)
 
 	w = 20;
 	h = 20;
-	// ideally this would be scr_width and scr_height / the number of tiles. But that's not adapted to stretched maps.
+	// ideally this would be scr_width and scr_height / the number of tiles, 
+	// but that's not adapted to stretched maps.
 	game->floor_tile = mlx_xpm_file_to_image(game->mlx, PIC_BACK, &w, &h);
 	game->wall_tile = mlx_xpm_file_to_image(game->mlx, PIC_WALL, &w, &h);
 	w = SCR_WIDTH / 2;

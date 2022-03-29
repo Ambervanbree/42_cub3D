@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 12:27:10 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:15:14 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 	int	a;
 	int	i;
 
+	fish_eye_correction(player);
 	if (fabs(player->sdX) < fabs(player->sdY))
 	{
 		player->next_hit[ray_nr][0] = player->ray_x[ray_nr][0];
 		player->next_hit[ray_nr][1] = player->ray_x[ray_nr][1];
-		// fish_eye_correction(player);
 		// get_wall_texture(player);
 		game->twod_ray[ray_nr] = fabs(player->sdX);
 	}
