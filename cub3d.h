@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/26 16:26:15 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:00:33 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,6 @@ void	get_view_points(t_player *player, t_map *map, t_game *game);
 double	correct_angle(double angle);
 void	draw_background(t_data *data, t_game *game, t_img *img);
 int		display(t_data *data);
+void	fish_eye_correction(t_player *player);
 
 #endif

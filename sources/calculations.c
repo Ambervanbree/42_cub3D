@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/26 17:19:14 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/29 11:00:03 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 	{
 		player->next_hit[ray_nr][0] = player->ray_x[ray_nr][0];
 		player->next_hit[ray_nr][1] = player->ray_x[ray_nr][1];
-		// fish_eye_correction(player);
+		fish_eye_correction(player);
 		// get_wall_texture(player);
 		game->twod_ray[ray_nr] = fabs(player->sdX);
 	}
@@ -106,22 +106,14 @@ void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 	{
 		player->next_hit[ray_nr][0] = player->ray_y[ray_nr][0];
 		player->next_hit[ray_nr][1] = player->ray_y[ray_nr][1];
-		// fish_eye_correction(player);
+		fish_eye_correction(player);
 		// get_wall_texture(player);
 		game->twod_ray[ray_nr] = fabs(player->sdY);
 	}
-	// pix_nb_x is the total number of pixels on the x axis of the screen
-	// total_rays is the total number of rays that we draw in 2D (for each view)
 	a = (int)(game->pix_nb_x / total_rays);
-	// Here I unsure that the "3D rays" we draw remain within the screen width
 	if ((ray_nr * a) < game->pix_nb_x - 1)
 	{
-	// I reversed the 2D ray size (so the small 2D rays will be big and the big
-	// ones will be small), and multiplied by 1000 because it looks good like this
-	// but I believe we should establish a more adapted variable 
-	// (that would depend on the screen's height for example)
-		game->threed_ray[ray_nr * a] = 1 / game->twod_ray[ray_nr] * 100;
-	// And finally I draw each (2D equivalent) ray "a" times
+		game->threed_ray[ray_nr * a] = 1 / game->twod_ray[ray_nr] * 750;
 		i = 0;
 		while (i < a)
 		{
@@ -129,15 +121,6 @@ void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 			i++;									
 		}
 	}
-	// Kept this version because it's pretty but it's useless :
-	// if ((ray_nr * a + 4) < game->pix_nb_x - 1)
-	// {
-	// 	game->threed_ray[ray_nr * a] = 1000 / game->twod_ray[ray_nr];
-	// 	game->threed_ray[ray_nr * a + 1] = game->threed_ray[ray_nr * a];
-	// 	game->threed_ray[ray_nr * a + 2] = game->threed_ray[ray_nr * a];
-	// 	game->threed_ray[ray_nr * a + 3] = game->threed_ray[ray_nr * a];
-	// 	game->threed_ray[ray_nr * a + 4] = game->threed_ray[ray_nr * a];										
-	// }
 }
 
 void	get_view_points(t_player *player, t_map *map, t_game *game)
