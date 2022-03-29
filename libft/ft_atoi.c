@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 19:37:23 by cproesch          #+#    #+#             */
-/*   Updated: 2021/10/08 13:59:00 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:27:07 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_atoi(const char *str)
 		if ((n * nbr) > 2147483647)
 			return (-1);
 		if ((n * nbr) < -2147483648)
-			return (0);
+			return (-1);
 	}
 	return (n * (int)nbr);
 }
