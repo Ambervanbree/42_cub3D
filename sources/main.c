@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 15:03:02 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:51:33 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_map_struct(t_map *map)
 void	init_player_struct(t_player *player)
 {
 	player->angle = 100;
-	player->dist = 2;
+	player->dist = 0.5;
 	player->plane = 11 * PI / 60;
 	player->ray_x = malloc(1000 * sizeof(t_vector));		// !!! adapter la size au nombre de points!!!
 	player->ray_y = malloc(1000 * sizeof(t_vector));		// !!! adapter la size au nombre de points!!!

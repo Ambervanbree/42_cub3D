@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 12:32:48 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:56:45 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,17 @@ void	draw_walls(t_game *game)
 	y = -1;
 	while (++y < SCR_WIDTH)
 	{
-		// printf("threed ray: %f\n", game->threed_ray[y]);
-		start = (SCR_HEIGHT - (int)game->threed_ray[y]) / 2;
-		len = (int)game->threed_ray[y];
-		while ((len) && (len < SCR_HEIGHT))
+		if ((int)game->threed_ray[y] < SCR_HEIGHT)
+		{
+			start = (SCR_HEIGHT - (int)game->threed_ray[y]) / 2;
+			len = (int)game->threed_ray[y];
+		}
+		else
+		{
+			start = 0;
+			len = SCR_HEIGHT;
+		}
+		while (len)
  		{
 			ft_pixel_put(game->img3D, y, start, WALL);
 			start++;

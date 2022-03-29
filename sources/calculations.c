@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 15:15:14 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/29 17:30:41 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	get_ray_x_max(int i, t_player *player, t_map *map)
 	int j;
 	int	box[2];
 
-	j = 0;
 	box[0] = (int)player->pos[0];
 	box[1] = (int)player->pos[1];
+	j = 0;
 	while (box[0] >= 0 && box[0] < map->width
 			&& box[1] >= 0 && box[1] < map->height
 			&& map->map[box[1]][box[0]] != '1')
@@ -57,12 +57,12 @@ void	get_ray_x_max(int i, t_player *player, t_map *map)
 
 void	get_ray_y_max(int ray_nr, t_player *player, t_map *map)
 {
-	int	box[2];
 	int	j;
-	
-	j = 0;
+	int	box[2];
+
 	box[0] = (int)player->pos[0];
 	box[1] = (int)player->pos[1];
+	j = 0;
 	while (box[0] >= 0 && box[0] < map->width
 			&& box[1] >= 0 && box[1] < map->height
 			&& map->map[box[1]][box[0]] != '1')
@@ -94,26 +94,27 @@ void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 	int	a;
 	int	i;
 
-	fish_eye_correction(player);
 	if (fabs(player->sdX) < fabs(player->sdY))
 	{
+		fish_eye_correction(player);
+		// not sure where to place the fish eye correction. To me it's more logic
+		// if it's below just  before compare_rays, but let's first put 
+		// the textures and check after.
 		player->next_hit[ray_nr][0] = player->ray_x[ray_nr][0];
 		player->next_hit[ray_nr][1] = player->ray_x[ray_nr][1];
-		// get_wall_texture(player);
 		game->twod_ray[ray_nr] = fabs(player->sdX);
 	}
 	else
 	{
+		fish_eye_correction(player);
 		player->next_hit[ray_nr][0] = player->ray_y[ray_nr][0];
 		player->next_hit[ray_nr][1] = player->ray_y[ray_nr][1];
-		// fish_eye_correction(player);
-		// get_wall_texture(player);
 		game->twod_ray[ray_nr] = fabs(player->sdY);
 	}
 	a = (int)(game->pix_nb_x / total_rays);
 	if ((ray_nr * a) < game->pix_nb_x - 1)
 	{
-		game->threed_ray[ray_nr * a] = 1 / game->twod_ray[ray_nr] * 750;
+		game->threed_ray[ray_nr * a] = 1 / game->twod_ray[ray_nr] * 500;
 		i = 0;
 		while (i < a)
 		{
