@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display3D.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 14:32:18 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/30 18:03:53 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_pixel_put(t_img *img, int x, int y, int color)
 	char	*dst;
 
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 void	draw_ceiling(t_img *img, int color)
@@ -78,18 +78,19 @@ void	draw_walls(t_game *game)
 			len = SCR_HEIGHT;
 		}
 		while (len)
- 		{
+		{
 			ft_pixel_put(game->img3D, y, start, WALL);
 			start++;
 			len--;
 		}
 	}
-} 
+}
 
-void	draw_3D_game(t_data *data, t_game *game, t_img *img)
+void	draw_3d_game(t_data *data, t_game *game, t_img *img)
 {
 	img->img = mlx_new_image(game->mlx, SCR_WIDTH, SCR_HEIGHT);
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len, &img->end);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp,
+			&img->line_len, &img->end);
 	draw_ceiling(img, data->map->ceiling);
 	draw_floor(img, data->map->floor);
 	draw_walls(data->game);

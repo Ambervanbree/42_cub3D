@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display2D.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 12:09:51 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 15:06:21 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:39:58 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	draw_point(t_game *game, double *point, int color)
 {
-	int y;
+	int	y;
 	int	x;
 	int	code;
 
@@ -25,7 +25,8 @@ void	draw_point(t_game *game, double *point, int color)
 		x = 0;
 		while (x < 5)
 		{
-			mlx_pixel_put(game->mlx, game->win, point[0] * 20 + x, point[1] * 20 + y + code, color);
+			mlx_pixel_put(game->mlx, game->win, point[0] * 20 + x,
+				point[1] * 20 + y + code, color);
 			x++;
 		}
 		y++;
@@ -37,7 +38,7 @@ void	draw_background(t_game *game, t_map *map)
 	int	x;
 	int	y;
 	int	code;
-	
+
 	code = SCR_HEIGHT / 2;
 	y = 0;
 	while (y < map->height)
@@ -46,14 +47,22 @@ void	draw_background(t_game *game, t_map *map)
 		while (x < map->width)
 		{
 			if (map->map[y][x] == '0')
-				mlx_put_image_to_window(game->mlx, game->win,game->floor_tile, x * 20, y * 20 + code);
+				mlx_put_image_to_window(game->mlx, game->win, game->floor_tile,
+					x * 20, y * 20 + code);
 			if (map->map[y][x] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, game->wall_tile, x * 20, y * 20  + code);
+				mlx_put_image_to_window(game->mlx, game->win, game->wall_tile,
+					x * 20, y * 20 + code);
 			x++;
 		}
 		y++;
 	}
 }
+
+// Ideally the height and width below would depend on the screen height
+// and width divided by the number of tiles, but this would only work
+// for maps with the same dimensions as the window. For the bonus part
+// of this project we have decided to only take into account maps that
+// are 40 tiles wide and 30 tiles high.
 
 void	file_to_image(t_game *game)
 {
@@ -62,8 +71,6 @@ void	file_to_image(t_game *game)
 
 	w = 20;
 	h = 20;
-	// ideally this would be scr_width and scr_height / the number of tiles, 
-	// but that's not adapted to stretched maps.
 	game->floor_tile = mlx_xpm_file_to_image(game->mlx, PIC_BACK, &w, &h);
 	game->wall_tile = mlx_xpm_file_to_image(game->mlx, PIC_WALL, &w, &h);
 	w = SCR_WIDTH / 2;
@@ -71,7 +78,7 @@ void	file_to_image(t_game *game)
 	game->name = mlx_xpm_file_to_image(game->mlx, NAME, &w, &h);
 }
 
-void	draw_2D_game(t_data *data, t_game *game)
+void	draw_2d_game(t_data *data, t_game *game)
 {
 	file_to_image(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->name, 0, 0);

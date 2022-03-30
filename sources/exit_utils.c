@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 14:27:57 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:59:42 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_free_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->img3D->img);
 		free(game->img3D);
 	}
-	if  (game->img2D)
+	if (game->img2D)
 		free(game->img2D);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
@@ -63,7 +63,6 @@ void	free_and_exit(t_data *data, int exit_code)
 	{
 		free(data->player->ray_x);
 		free(data->player->ray_y);
-	//	free(data->player->next_hit);
 		free(data->player);
 		data->player = NULL;
 	}

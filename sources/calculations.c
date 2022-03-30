@@ -6,88 +6,63 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 15:02:06 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 18:01:53 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-double	correct_angle(double angle)
+void	get_ray_x_max(int ray_nr, t_player *player, int *box, int *j)
 {
-	if (angle < 0)
-		angle += 2 * PI;
-	if (angle > 2 * PI)
-		angle -= 2 * PI;
-	return (angle);
-}
-
-void	get_ray_x_max(int i, t_player *player, t_map *map)
-{
-	int j;
-	int	box[2];
-
-	box[0] = (int)player->pos[0];
-	box[1] = (int)player->pos[1];
-	j = 0;
-	while (box[0] >= 0 && box[0] < map->width
-			&& box[1] >= 0 && box[1] < map->height
-			&& map->map[box[1]][box[0]] != '1')
+	if ((player->ray_angle == PI / 2) || (player->ray_angle == 3 * PI / 2))
+		player->sdX = 1000;
+	else
 	{
-		if ((player->ray_angle == PI / 2) || (player->ray_angle == 3 * PI / 2))
-			player->sdX = 1000;
+		if ((player->ray_angle < PI / 2) || (player->ray_angle > 3 * PI / 2))
+		{
+			player->ray_x[ray_nr][0] = floor(player->pos[0]) + *j + 1;
+			box[0] = (int)player->ray_x[ray_nr][0];
+		}
 		else
 		{
-			if ((player->ray_angle < PI / 2) || (player->ray_angle > 3 * PI / 2))
-			{
-				player->ray_x[i][0] = floor(player->pos[0]) + j + 1;
-				box[0] = (int)player->ray_x[i][0];
-			}
-			else
-			{
-				player->ray_x[i][0] = floor(player->pos[0]) - j;
-				box[0] = (int)player->ray_x[i][0] - 1;
-			}
-			player->sdX = (player->ray_x[i][0] - player->pos[0]) / (cos(player->ray_angle));
-			player->ray_x[i][1] = player->pos[1] + (player->sdX * (sin(player->ray_angle)));
-			box[1] = (int)player->ray_x[i][1];
+			player->ray_x[ray_nr][0] = floor(player->pos[0]) - *j;
+			box[0] = (int)player->ray_x[ray_nr][0] - 1;
 		}
-		j++;
+		player->sdX = (player->ray_x[ray_nr][0] - player->pos[0])
+			/ (cos(player->ray_angle));
+		player->ray_x[ray_nr][1] = player->pos[1]
+			+ (player->sdX * (sin(player->ray_angle)));
+		box[1] = (int)player->ray_x[ray_nr][1];
 	}
 }
 
-void	get_ray_y_max(int ray_nr, t_player *player, t_map *map)
+void	get_ray_y_max(int ray_nr, t_player *player, int *box, int *j)
 {
-	int	j;
-	int	box[2];
-
-	box[0] = (int)player->pos[0];
-	box[1] = (int)player->pos[1];
-	j = 0;
-	while (box[0] >= 0 && box[0] < map->width
-			&& box[1] >= 0 && box[1] < map->height
-			&& map->map[box[1]][box[0]] != '1')
+	if ((player->ray_angle == PI) || (player->ray_angle == 0))
+		player->sdY = 1000;
+	else
 	{
-		if ((player->ray_angle == PI) || (player->ray_angle == 0))
-			player->sdY = 1000;
+		if (player->ray_angle < PI)
+		{
+			player->ray_y[ray_nr][1] = floor(player->pos[1]) + *j + 1;
+			box[1] = (int)player->ray_y[ray_nr][1];
+		}
 		else
 		{
-			if (player->ray_angle < PI)
-			{
-				player->ray_y[ray_nr][1] = floor(player->pos[1]) + j + 1;
-				box[1] = (int)player->ray_y[ray_nr][1];
-			}
-			else
-			{
-				player->ray_y[ray_nr][1] = floor(player->pos[1]) - j;
-				box[1] = (int)player->ray_y[ray_nr][1] - 1;
-			}
-			player->sdY = (player->ray_y[ray_nr][1] - player->pos[1]) / sin(player->ray_angle);
-			player->ray_y[ray_nr][0] = player->pos[0] + (player->sdY * (cos(player->ray_angle)));
-			box[0] = (int)player->ray_y[ray_nr][0];
+			player->ray_y[ray_nr][1] = floor(player->pos[1]) - *j;
+			box[1] = (int)player->ray_y[ray_nr][1] - 1;
 		}
-		j++;
+		player->sdY = (player->ray_y[ray_nr][1] - player->pos[1])
+			/ sin(player->ray_angle);
+		player->ray_y[ray_nr][0] = player->pos[0]
+			+ (player->sdY * (cos(player->ray_angle)));
+		box[0] = (int)player->ray_y[ray_nr][0];
 	}
 }
+
+// not sure where to place the fish eye correction. To me it's more logic
+// if it's below just  before compare_rays, but let's first put 
+// the textures and check after.
 
 void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 {
@@ -97,9 +72,6 @@ void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 	if (fabs(player->sdX) < fabs(player->sdY))
 	{
 		fish_eye_correction(player);
-		// not sure where to place the fish eye correction. To me it's more logic
-		// if it's below just  before compare_rays, but let's first put 
-		// the textures and check after.
 		player->next_hit = player->ray_x;
 		game->twod_ray[ray_nr] = fabs(player->sdX);
 	}
@@ -113,11 +85,33 @@ void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 	if ((ray_nr * a) < game->pix_nb_x - 1)
 	{
 		game->threed_ray[ray_nr * a] = 1 / game->twod_ray[ray_nr] * 500;
-		i = 0;
-		while (i < a)
+		i = -1;
+		while (++i < a)
+			game->threed_ray[ray_nr * a + i] = game->threed_ray[ray_nr * a];
+	}
+}
+
+void	get_ray_xy(int ray_nr, t_player *player, t_map *map)
+{
+	int	j;
+	int	i;
+	int	box[2];
+
+	i = -1;
+	while (++i < 2)
+	{
+		box[0] = (int)player->pos[0];
+		box[1] = (int)player->pos[1];
+		j = 0;
+		while (box[0] >= 0 && box[0] < map->width
+			&& box[1] >= 0 && box[1] < map->height
+			&& map->map[box[1]][box[0]] != '1')
 		{
-			game->threed_ray[ray_nr * a + i] = game->threed_ray[ray_nr * a];	
-			i++;									
+			if (i == 0)
+				get_ray_x_max(ray_nr, player, box, &j);
+			else
+				get_ray_y_max(ray_nr, player, box, &j);
+			j++;
 		}
 	}
 }
@@ -136,8 +130,7 @@ void	get_view_points(t_player *player, t_map *map, t_game *game)
 	ray_nr = 0;
 	while ((delta * ray_nr) < (player->plane * 2))
 	{
-		get_ray_x_max(ray_nr, player, map);
-		get_ray_y_max(ray_nr, player, map);
+		get_ray_xy(ray_nr, player, map);
 		compare_rays(total_rays, ray_nr, player, game);
 		player->ray_angle = correct_angle(player->ray_angle + delta);
 		ray_nr++;

@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 14:45:28 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:57:09 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,8 @@ int		key_event(int keypress, t_data *data);
 void	get_view_points(t_player *player, t_map *map, t_game *game);
 double	correct_angle(double angle);
 int		display(t_data *data);
-void	draw_3D_game(t_data *data, t_game *game, t_img *img);
+void	draw_3d_game(t_data *data, t_game *game, t_img *img);
 void	fish_eye_correction(t_player *player);
-void	draw_2D_game(t_data *data, t_game *game);
+void	draw_2d_game(t_data *data, t_game *game);
 
 #endif

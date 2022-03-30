@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:36:17 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 13:05:27 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:57:01 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ int	check_map_init_player(t_data *data)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (data->map->map[i])
+	i = -1;
+	while (data->map->map[++i])
 	{
-		j = 0;
-		while (data->map->map[i][j])
+		j = -1;
+		while (data->map->map[i][++j])
 		{	
 			if (!strchr("10NESW ", data->map->map[i][j]))
 				return (error_message("Invalid map", NULL, 0));
@@ -67,9 +67,7 @@ int	check_map_init_player(t_data *data)
 			}
 			if (!check_walls(data->map, i, j))
 				return (error_message("Invalid map", NULL, 0));
-			j++;
 		}
-		i++;
 	}
 	if (data->player->angle > 2 * PI)
 		return (error_message("Invalid map", NULL, 0));

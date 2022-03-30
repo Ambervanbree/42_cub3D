@@ -6,13 +6,13 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:30:45 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 15:22:19 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:57:03 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	redcross_exit(t_data * data)
+int	redcross_exit(t_data *data)
 {
 	free_and_exit(data, 0);
 	return (1);
@@ -31,11 +31,10 @@ int	init_window(t_game *game)
 
 int	display(t_data *data)
 {
-
-	draw_3D_game(data, data->game, data->game->img3D);
+	draw_2d_game(data, data->game);
+	draw_3d_game(data, data->game, data->game->img3D);
 	return (0);
 }
-
 
 int	init_game(t_data *data, t_game *game)
 {
@@ -43,8 +42,7 @@ int	init_game(t_data *data, t_game *game)
 		return (0);
 	get_view_points(data->player, data->map, data->game);
 	display(data);
-	//mlx_loop_hook(data->game->mlx, &display, data);
-	mlx_hook(game->win, 2, 1L<<0, &key_event, data);
+	mlx_hook(game->win, 2, 1L << 0, &key_event, data);
 	mlx_hook(game->win, 17, 0, &redcross_exit, data);
 	mlx_loop(game->mlx);
 	return (1);

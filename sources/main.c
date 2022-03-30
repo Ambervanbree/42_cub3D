@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 14:58:26 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:52:58 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ void	init_player_struct(t_player *player)
 	player->angle = 100;
 	player->dist = 0.5;
 	player->plane = 11 * PI / 60;
-	player->ray_x = malloc(1000 * sizeof(t_vector));		// !!! adapter la size au nombre de points!!! SCR_WIDTH?? 
-	player->ray_y = malloc(1000 * sizeof(t_vector));		// !!! adapter la size au nombre de points!!!
-//	player->next_hit = malloc(1000 * sizeof(t_vector));	// !!! adapter la size au nombre de points!!!
+	player->ray_x = malloc(SCR_WIDTH * sizeof(t_vector));
+	player->ray_y = malloc(SCR_WIDTH * sizeof(t_vector));
 }
 
 void	init_game_struct(t_game *game)
@@ -43,7 +42,7 @@ void	init_game_struct(t_game *game)
 	game->wall_tile = NULL;
 	game->name = NULL;
 	game->pix_nb_x = SCR_WIDTH;
-    game->pix_nb_y = SCR_HEIGHT;
+	game->pix_nb_y = SCR_HEIGHT;
 	game->img3D = malloc(1 * sizeof(t_img));
 	game->img2D = malloc(1 * sizeof(t_img));
 	game->twod_ray = malloc(1000 * sizeof(float));
@@ -68,7 +67,7 @@ int	main(int argc, char *argv[])
 	t_data	data;
 
 	if (argc != 2)
-		return (error_message("Expected format: ./cub3D < mapfile.cub >", 
+		return (error_message("Expected format: ./cub3D < mapfile.cub >",
 				NULL, 1));
 	if (!init_structures(&data))
 		free_and_exit(&data, 1);
