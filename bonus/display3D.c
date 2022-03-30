@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   background.c                                       :+:      :+:    :+:   */
+/*   display3D.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 14:28:14 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:32:18 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,27 +67,31 @@ void	draw_walls(t_game *game)
 	y = -1;
 	while (++y < SCR_WIDTH)
 	{
-		// printf("threed ray: %f\n", game->threed_ray[y]);
-		start = (SCR_HEIGHT - (int)game->threed_ray[y]) / 2;
-		len = (int)game->threed_ray[y];
-		while ((len) && (len < SCR_HEIGHT))
+		if ((int)game->threed_ray[y] < SCR_HEIGHT)
+		{
+			start = (SCR_HEIGHT - (int)game->threed_ray[y]) / 2;
+			len = (int)game->threed_ray[y];
+		}
+		else
+		{
+			start = 0;
+			len = SCR_HEIGHT;
+		}
+		while (len)
  		{
-			ft_pixel_put(game->screen, y, start, WALL);
+			ft_pixel_put(game->img3D, y, start, WALL);
 			start++;
 			len--;
 		}
 	}
-}
+} 
 
-get_text_struct()
-
-void	draw_background(t_data *data, t_game *game, t_img *img)
+void	draw_3D_game(t_data *data, t_game *game, t_img *img)
 {
-	data->game->screen->img = mlx_new_image(game->mlx, SCR_WIDTH, SCR_HEIGHT);
+	img->img = mlx_new_image(game->mlx, SCR_WIDTH, SCR_HEIGHT);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len, &img->end);
 	draw_ceiling(img, data->map->ceiling);
 	draw_floor(img, data->map->floor);
 	draw_walls(data->game);
-	mlx_put_image_to_window(game->mlx, game->win, game->screen->img, SCR_WIDTH / 2, 0);
-	// draw_2d_part(data);
+	mlx_put_image_to_window(game->mlx, game->win, img->img, SCR_WIDTH / 2, 0);
 }

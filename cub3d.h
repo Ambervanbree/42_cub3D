@@ -6,15 +6,15 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 14:42:32 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:45:28 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../libft/libft.h"
-# include "../mlx/mlx.h"
+# include "libft/libft.h"
+# include "mlx/mlx.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <errno.h>
