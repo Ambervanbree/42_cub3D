@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 10:50:21 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 15:40:49 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:06:42 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	get_color(char *line)
 	color = tab[2];
 	color = color | (tab[1] << 8);
 	color = color | (tab[0] << 16);
-	printf("color = %d\n", color);
 	return (color);
 }
 
