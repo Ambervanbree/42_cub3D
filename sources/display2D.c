@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display2D.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 12:09:51 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 14:56:20 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:40:17 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	file_to_image(t_game *game)
 	w = SCR_WIDTH / 2;
 	h = SCR_HEIGHT / 2;
 	game->name = mlx_xpm_file_to_image(game->mlx, NAME, &w, &h);
+	printf("file to image\n");
 }
 
 void	draw_2D_game(t_data *data, t_game *game)
