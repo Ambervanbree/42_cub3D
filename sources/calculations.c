@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 17:30:41 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 11:47:57 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,15 +100,13 @@ void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 		// not sure where to place the fish eye correction. To me it's more logic
 		// if it's below just  before compare_rays, but let's first put 
 		// the textures and check after.
-		player->next_hit[ray_nr][0] = player->ray_x[ray_nr][0];
-		player->next_hit[ray_nr][1] = player->ray_x[ray_nr][1];
+		player->next_hit = player->ray_x;
 		game->twod_ray[ray_nr] = fabs(player->sdX);
 	}
 	else
 	{
 		fish_eye_correction(player);
-		player->next_hit[ray_nr][0] = player->ray_y[ray_nr][0];
-		player->next_hit[ray_nr][1] = player->ray_y[ray_nr][1];
+		player->next_hit = player->ray_y;
 		game->twod_ray[ray_nr] = fabs(player->sdY);
 	}
 	a = (int)(game->pix_nb_x / total_rays);

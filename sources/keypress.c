@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:04:08 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 17:18:00 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 11:16:43 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ float	hit_wall_y(t_player *player, t_map *map, float angle)
 
 void	walk_in_direction(t_player *player, t_map *map, double angle)
 {
-	if (hit_wall_x(player, map, angle) > 1.2 && hit_wall_y(player, map, angle) > 1.2)
+	if (hit_wall_x(player, map, angle) > 0.5 && hit_wall_y(player, map, angle) > 0.5)
 	{
 		player->pos[0] += (0.1 * cos(angle));
 		player->pos[1] += (0.1 * sin(angle));

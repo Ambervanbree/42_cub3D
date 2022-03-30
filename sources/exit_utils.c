@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 15:07:15 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 11:48:57 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	free_and_exit(t_data *data, int exit_code)
 	{
 		free(data->player->ray_x);
 		free(data->player->ray_y);
-		free(data->player->next_hit);
+	//	free(data->player->next_hit);
 		free(data->player);
 		data->player = NULL;
 	}

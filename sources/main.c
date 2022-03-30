@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/29 15:51:33 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 11:48:20 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_player_struct(t_player *player)
 	player->plane = 11 * PI / 60;
 	player->ray_x = malloc(1000 * sizeof(t_vector));		// !!! adapter la size au nombre de points!!!
 	player->ray_y = malloc(1000 * sizeof(t_vector));		// !!! adapter la size au nombre de points!!!
-	player->next_hit = malloc(1000 * sizeof(t_vector));	// !!! adapter la size au nombre de points!!!
+//	player->next_hit = malloc(1000 * sizeof(t_vector));	// !!! adapter la size au nombre de points!!!
 }
 
 void	init_game_struct(t_game *game)
