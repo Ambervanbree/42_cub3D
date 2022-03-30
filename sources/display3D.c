@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 14:25:13 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:32:18 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	draw_ceiling(t_img *img)
+void	draw_ceiling(t_img *img, int color)
 {
 	int	x;
 	int	y;
@@ -32,14 +32,14 @@ void	draw_ceiling(t_img *img)
 		x = 0;
 		while (x < SCR_WIDTH)
 		{
-			ft_pixel_put(img, x, y, CEILING);
+			ft_pixel_put(img, x, y, color);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	draw_floor(t_img *img)
+void	draw_floor(t_img *img, int color)
 {
 	int	x;
 	int	y;
@@ -51,7 +51,7 @@ void	draw_floor(t_img *img)
 		x = 0;
 		while (x < SCR_WIDTH)
 		{
-			ft_pixel_put(img, x, y, FLOOR);
+			ft_pixel_put(img, x, y, color);
 			x++;
 		}
 		y--;
