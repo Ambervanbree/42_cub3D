@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 16:45:16 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/30 19:31:04 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-	t_img	img3D[6];
+	t_img	*img3D;
 	t_img	*img2D;
 	void	*twod_mlx;
 	void	*twod_win;
