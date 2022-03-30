@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display3D.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 11:35:19 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:25:13 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ void	draw_3D_game(t_data *data, t_game *game, t_img *img)
 {
 	img->img = mlx_new_image(game->mlx, SCR_WIDTH, SCR_HEIGHT);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len, &img->end);
-	draw_ceiling(img);
-	draw_floor(img);
+	draw_ceiling(img, data->map->ceiling);
+	draw_floor(img, data->map->floor);
 	draw_walls(data->game);
 	mlx_put_image_to_window(game->mlx, game->win, img->img, SCR_WIDTH / 2, 0);
 }

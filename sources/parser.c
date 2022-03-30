@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 10:43:41 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/21 15:49:50 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:47:28 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ int	get_map_data(t_map *map, char **line, int fd)
 		*line = get_next_line(fd);
 		i++;
 	}
-	if (!(map->no && map->so && map->we && map->ea && map->floor
-			&& map->ceiling))
+	if (!(map->no && map->so && map->we && map->ea)
+		|| (map->floor <  0) || (map->ceiling < 0))
 		return (error_message("Map data missing", NULL, 0));
 	map->height -= i;
 	return (1);

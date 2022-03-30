@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 11:48:57 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:25:29 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,6 @@ void	ft_free_game(t_game *game)
 
 void	ft_free_map(t_map *map)
 {
-	int	i;
-
-	i = -1;
-	if (map->floor)
-	{
-		while (++i < 3)
-			map->floor[i] = 0;
-		free(map->floor);
-	}
-	i = -1;
-	if (map->ceiling)
-	{
-		while (++i < 3)
-			map->ceiling[i] = 0;
-		free(map->ceiling);
-	}
 	if (map->no)
 		free_string(&map->no);
 	if (map->so)

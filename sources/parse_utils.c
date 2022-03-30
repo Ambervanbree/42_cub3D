@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 10:50:21 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/21 13:12:21 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:40:49 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,12 @@ char	*get_path_texture(char *line)
 	return (path);
 }
 
-int	*get_color(char *line)
+int	get_color(char *line)
 {
 	int	i;
-	int	*tab;
+	int	tab[3];
+	int	color;
 
-	tab = malloc(sizeof(int) * 3);
-	if (!tab)
-		printf("malloc error\n");
 	i = 1;
 	while (line[i] == ' ')
 		i++;
@@ -46,8 +44,15 @@ int	*get_color(char *line)
 		i++;
 	i++;
 	tab[2] = ft_atoi(&line[i]);
+	if ((tab[0] < 0) || (tab[1] < 0) || (tab[2] < 0)
+		|| (tab[0] > 255) || (tab[1] > 255) || (tab[2] > 255))
+		return (-1);
 	free_string(&line);
-	return (tab);
+	color = tab[2];
+	color = color | (tab[1] << 8);
+	color = color | (tab[0] << 16);
+	printf("color = %d\n", color);
+	return (color);
 }
 
 void	print_map(t_map *map)
