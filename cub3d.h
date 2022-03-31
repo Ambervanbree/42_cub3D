@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/31 10:53:54 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:42:25 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ typedef struct s_player
 	double		ddY;
 	t_vector	*ray_x;
 	t_vector	*ray_y;
+	int			mouse_x;
+	int			mouse_y;
 }	t_player;
 
 typedef struct s_map
