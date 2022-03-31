@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/31 12:08:53 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:31:06 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ void	init_player_struct(t_player *player)
 	player->angle = 100;
 	player->dist = 0.5;
 	player->plane = 11 * PI / 60;
-	player->ray_x = malloc(SCR_WIDTH * sizeof(t_vector));
-	player->ray_y = malloc(SCR_WIDTH * sizeof(t_vector));
+	total_rays = (int)(player->plane * 2) / player->delta;
+	player->ray_x = malloc(total_rays * sizeof(t_vector));
+	player->ray_y = malloc(total_rays * sizeof(t_vector));
 }
 
 void	init_game_struct(t_game *game)

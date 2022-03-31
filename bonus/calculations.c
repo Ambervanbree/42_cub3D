@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 18:01:53 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:31:21 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	get_ray_x_max(int ray_nr, t_player *player, int *box, int *j)
 {
+	printf("ray nr %d\n", ray_nr);
 	if ((player->ray_angle == PI / 2) || (player->ray_angle == 3 * PI / 2))
 		player->sdX = 1000;
 	else
@@ -64,7 +65,7 @@ void	get_ray_y_max(int ray_nr, t_player *player, int *box, int *j)
 // if it's below just  before compare_rays, but let's first put 
 // the textures and check after.
 
-void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
+void	compare_rays(int ray_nr, t_player *player, t_game *game)
 {
 	int	a;
 	int	i;
@@ -81,7 +82,7 @@ void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
 		player->next_hit = player->ray_y;
 		game->twod_ray[ray_nr] = fabs(player->sdY);
 	}
-	a = (int)(game->pix_nb_x / total_rays);
+	a = (int)(game->pix_nb_x / player->total_rays);
 	if ((ray_nr * a) < game->pix_nb_x - 1)
 	{
 		game->threed_ray[ray_nr * a] = 1 / game->twod_ray[ray_nr] * 500;
@@ -118,21 +119,18 @@ void	get_ray_xy(int ray_nr, t_player *player, t_map *map)
 
 void	get_view_points(t_player *player, t_map *map, t_game *game)
 {
-	double	delta;
 	int		ray_nr;
-	int		total_rays;
 
-	delta = 0.01;
 	player->dir[0] = player->pos[0] + player->dist * cos(player->angle);
 	player->dir[1] = player->pos[1] + player->dist * sin(player->angle);
 	player->ray_angle = correct_angle(player->angle - player->plane);
-	total_rays = (int)(player->plane * 2) / delta;
+	printf("total in view points nulos %d\n", player->total_rays);
 	ray_nr = 0;
-	while ((delta * ray_nr) < (player->plane * 2))
+	while (ray_nr < player->total_rays)
 	{
 		get_ray_xy(ray_nr, player, map);
-		compare_rays(total_rays, ray_nr, player, game);
-		player->ray_angle = correct_angle(player->ray_angle + delta);
+		compare_rays(ray_nr, player, game);
+		player->ray_angle = correct_angle(player->ray_angle + player->delta);
 		ray_nr++;
 	}
 }

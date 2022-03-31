@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/31 13:42:34 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:32:29 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,19 @@ void	init_map_struct(t_map *map)
 
 void	init_player_struct(t_player *player)
 {
+	double	total_rays;
+
 	player->angle = 100;
 	player->dist = 0.5;
+	player->delta = 0.01;
 	player->plane = 11 * PI / 60;
-	player->ray_x = malloc(SCR_WIDTH * sizeof(t_vector));
-	player->ray_y = malloc(SCR_WIDTH * sizeof(t_vector));
+	total_rays = player->plane * 2 / player->delta;
+	player->total_rays = (int)total_rays;
+	printf("total in init %d\n", player->total_rays);
 	player->mouse_x = -1;
 	player->mouse_y = -1;
+	player->ray_x = malloc(player->total_rays * sizeof(t_vector));
+	player->ray_y = malloc(player->total_rays * sizeof(t_vector));
 }
 
 void	init_game_struct(t_game *game)

@@ -6,7 +6,7 @@
 #    By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:51:08 by avan-bre          #+#    #+#              #
-#    Updated: 2022/03/31 12:23:50 by avan-bre         ###   ########.fr        #
+#    Updated: 2022/03/31 15:13:31 by avan-bre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,12 +90,12 @@ bonus:	$(BONUS)
 
 $(LIBFT):
 		@echo "Compiling libft.."
-		make -C libft
+		make -s -C libft
 		@echo "Libft ready!"
 
 $(MLX)	:
 		@echo "Compiling mlx.."
-		make -C mlx
+		make -s -C mlx
 		@echo "Mlx ready!"
 
 clean:
