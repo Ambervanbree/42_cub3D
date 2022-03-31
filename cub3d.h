@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/31 17:59:41 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/31 18:36:53 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,6 @@ void	fish_eye_correction(t_player *player);
 void	draw_2d_game(t_data *data, t_game *game);
 void	ft_pixel_put(t_img *img, int x, int y, int color);
 int		get_pixel_color(t_game *game, t_img img, int x, int y);
-void	get_img(t_game *game, char *addr);
+void    get_images(t_game *game, t_map *map);
 
 #endif
