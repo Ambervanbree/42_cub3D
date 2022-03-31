@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/31 10:20:47 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/31 10:53:54 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,10 @@ typedef struct s_game
 	void	*win;
 	t_img	*img3D;
 	t_img	*img2D;
-	void	*twod_mlx;
-	void	*twod_win;
 	void	*floor_tile;
 	void	*wall_tile;
 	void	*name;
 	float	*twod_ray;
-	void	*threed_mlx;
-	void	*threed_win;
     int     pix_nb_x;
     int     pix_nb_y;
 	float	*threed_ray;

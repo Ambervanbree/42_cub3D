@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:30:45 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/31 10:58:14 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:57:03 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	init_window(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		error_message("Mlx_init failed", NULL, 1);
-	game->win = mlx_new_window(game->mlx, SCR_WIDTH, SCR_HEIGHT, "cub3D");
+	game->win = mlx_new_window(game->mlx, SCR_WIDTH * 1.5, SCR_HEIGHT, "cub3D");
 	if (!game->win)
 		error_message("Mlx_new_window failed", NULL, 1);
 	return (1);
@@ -31,6 +31,7 @@ int	init_window(t_game *game)
 
 int	display(t_data *data)
 {
+	draw_2d_game(data, data->game);
 	draw_3d_game(data, data->game, data->game->img3D);
 	return (0);
 }
