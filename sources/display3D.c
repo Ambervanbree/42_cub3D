@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 19:31:29 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/03/31 10:19:06 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,36 @@ void	draw_walls(t_game *game, t_img texture_img, t_img disp_img)
 	}
 }
 
+// void	draw_walls(t_game *game, t_img disp_img)
+// {
+// 	int	y;
+// 	int	start;
+// 	int	len;
+// 	// int	color;
+
+// 	y = -1;
+// 	while (++y < SCR_WIDTH)
+// 	{
+// 		if ((int)game->threed_ray[y] < SCR_HEIGHT)
+// 		{
+// 			start = (SCR_HEIGHT - (int)game->threed_ray[y]) / 2;
+// 			len = (int)game->threed_ray[y];
+// 		}
+// 		else
+// 		{
+// 			start = 0;
+// 			len = SCR_HEIGHT;
+// 		}
+// 		while (len)
+//  		{
+// 			// color = get_pixel_color(game, texture_img, y, len);
+// 			ft_pixel_put(&disp_img, y, start, 0x000000);
+// 			start++;
+// 			len--;
+// 		}
+// 	}
+// }
+
 void	draw_3D_game(t_data *data, t_game *game, t_img *img)
 {
 	img[0].img = mlx_new_image(game->mlx, SCR_WIDTH, SCR_HEIGHT);
@@ -118,10 +148,11 @@ void	draw_3D_game(t_data *data, t_game *game, t_img *img)
 	draw_ceiling(img[0], data->map->ceiling);
 	draw_floor(img[0], data->map->floor);
 	img[1].addr = mlx_get_data_addr(&(data->map->no), &img[1].bpp, &img[1].line_len, &img[1].end);
-	printf("texture line len = %d\n", img[1].line_len);
-	printf("bpp = %d\n", img[1].bpp);
-	exit(0);
+	// printf("texture line len = %d\n", img[1].line_len);
+	// printf("bpp = %d\n", img[1].bpp);
+	// exit(0);
 	draw_walls(data->game, img[1], img[0]);
+	// draw_walls(data->game, img[0]);
 	mlx_put_image_to_window(game->mlx, game->win, img[0].img, SCR_WIDTH / 2, 0);
 
 	
