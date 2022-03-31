@@ -6,7 +6,7 @@
 #    By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:51:08 by avan-bre          #+#    #+#              #
-#    Updated: 2022/03/31 11:12:43 by avan-bre         ###   ########.fr        #
+#    Updated: 2022/03/31 12:23:50 by avan-bre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ else
 endif
 
 ifeq ($(OS), Linux)
-	MLX		=	libmlx_Linux.a
+	MLX		=	mlx/libmlx_Linux.a
 else
 	MLX		=
 endif
@@ -71,15 +71,15 @@ B_OBJS	=	$(addprefix $(B_DIR), $(B_SRCS:.c=.o))
 #                                 RULES                                        #                                                            
 ################################################################################  
 
-.c.o:
-		$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
-
 all:		$(NAME)
 
 $(NAME):	$(LIBFT) $(MLX) $(OBJS)
 		@echo "Compiling sources.."
 		$(CC) $(OBJS) $(CFLAGS) $(LFLAGS) $(MFLAGS) -o $@
 		@echo "Ready!"
+
+%.o:	%.c
+		$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 $(BONUS):	$(LIBFT) $(MLX) $(B_OBJS)
 		@echo "Compiling sources.."
@@ -90,12 +90,12 @@ bonus:	$(BONUS)
 
 $(LIBFT):
 		@echo "Compiling libft.."
-		@make -s -C libft
+		make -C libft
 		@echo "Libft ready!"
 
 $(MLX)	:
 		@echo "Compiling mlx.."
-		make -s -C mlx
+		make -C mlx
 		@echo "Mlx ready!"
 
 clean:
