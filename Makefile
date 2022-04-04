@@ -6,7 +6,7 @@
 #    By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:51:08 by avan-bre          #+#    #+#              #
-#    Updated: 2022/03/31 15:13:31 by avan-bre         ###   ########.fr        #
+#    Updated: 2022/04/04 13:46:57 by avan-bre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,10 +60,11 @@ endif
 
 S_DIR	=	sources/
 B_DIR	=	bonus/
-C_SRCS	=	main.c parser.c parse_utils.c map_check_player_init.c game.c \
-			calculations.c keypress.c display3D.c calc_utils.c exit_utils.c
-SRCS	=	$(C_SRCS)
-B_SRCS	=	$(C_SRCS) display2D.c
+C_SRCS	=	main.c parser.c parse_utils.c map_check_player_init.c \
+			calculations.c keypress.c display3D.c calc_utils.c display2D.c \
+			display3D_utils.c 
+SRCS	=	$(C_SRCS) exit_utils.c game.c
+B_SRCS	=	$(C_SRCS) display2D.c exit_utils_bonus.c game_bonus.c
 OBJS	=	$(addprefix $(S_DIR), $(SRCS:.c=.o))
 B_OBJS	=	$(addprefix $(B_DIR), $(B_SRCS:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/31 15:31:06 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:47:08 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ void	init_game_struct(t_game *game)
 	game->name = NULL;
 	game->pix_nb_x = SCR_WIDTH;
     game->pix_nb_y = SCR_HEIGHT;
-	game->img3D = malloc(5 * sizeof(t_img));
+	game->img2D = malloc(1 * sizeof(t_img));
+	game->img3D = malloc(1 * sizeof(t_img));
+	game->text = malloc(4 * sizeof(t_text));
 	game->twod_ray = malloc(1000 * sizeof(float));
 	game->threed_ray = malloc(game->pix_nb_x * sizeof(float));
 }
