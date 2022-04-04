@@ -3,24 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   display3D.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/31 11:08:55 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 12:48:57 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	draw_ceiling(t_img img, int color)
+void	draw_ceiling(t_img *img, int color)
 {
 	int	x;
 	int	y;
@@ -32,14 +24,14 @@ void	draw_ceiling(t_img img, int color)
 		x = 0;
 		while (x < SCR_WIDTH)
 		{
-			ft_pixel_put(&img, x, y, color);
+			ft_pixel_put(img, x, y, color);
 			x++;
 		}
 		y++;
 	}
 }
 
-void	draw_floor(t_img img, int color)
+void	draw_floor(t_img *img, int color)
 {
 	int	x;
 	int	y;
@@ -51,109 +43,53 @@ void	draw_floor(t_img img, int color)
 		x = 0;
 		while (x < SCR_WIDTH)
 		{
-			ft_pixel_put(&img, x, y, color);
+			ft_pixel_put(img, x, y, color);
 			x++;
 		}
 		y--;
 	}
 }
 
-// int	get_pixel_color(t_game *game, t_img img, int y, int len)
-// {
-// 	int	color;
-// 	int	height_ratio;
-// 	int	texture_y;
-// 	int	texture_x;
-
-// 	// printf("rapport = %d\n", rapport);
-// 	height_ratio = img.line_len / game->threed_ray[y];
-// 	texture_y = (int)(len * height_ratio);
-// 	texture_x = y % 32;
-// 	// printf("len = %d\n", len);
-// 	// printf("img.line_len = %d\n", img.line_len);
-// 	// printf("height_ratio = %d\n", height_ratio);
-// 	// printf("y = %d\n", y);
-// 	// printf("le numero de pixel = %d", (len * (img.line_len / 32)) / height_ratio + y);
-// 	// exit(0);
-// 	color = (int)((int*)img.addr)[texture_y * img.line_len + texture_x];
-// 	// a priori img.addr ne contient que 32 chars! ???
-// 	return (color);
-// }
-
-// void	draw_walls(t_game *game, t_img texture_img, t_img disp_img)
-// {
-// 	int	y;
-// 	int	start;
-// 	int	len;
-// 	int	color;
-
-// 	y = -1;
-// 	while (++y < SCR_WIDTH)
-// 	{
-// 		if ((int)game->threed_ray[y] < SCR_HEIGHT)
-// 		{
-// 			start = (SCR_HEIGHT - (int)game->threed_ray[y]) / 2;
-// 			len = (int)game->threed_ray[y];
-// 		}
-// 		else
-// 		{
-// 			start = 0;
-// 			len = SCR_HEIGHT;
-// 		}
-// 		while (len)
-//  		{
-// 			color = get_pixel_color(game, texture_img, y, len);
-// 			ft_pixel_put(&disp_img, y, start, color);
-// 			start++;
-// 			len--;
-// 		}
-// 	}
-// }
-
-void	draw_walls(t_game *game, t_img disp_img)
+void	draw_walls(t_game *game, t_img texture, t_img *display)
 {
+	int	x;
 	int	y;
 	int	start;
-	int	len;
-	// int	color;
+	int	ray_size;
+	int	color;
 
-	y = -1;
-	while (++y < SCR_WIDTH)
+	x = -1;
+	while (++x < SCR_WIDTH)
 	{
-		if ((int)game->threed_ray[y] < SCR_HEIGHT)
+		if ((int)game->threed_ray[x] < SCR_HEIGHT)
 		{
-			start = (SCR_HEIGHT - (int)game->threed_ray[y]) / 2;
-			len = (int)game->threed_ray[y];
+			start = (SCR_HEIGHT - (int)game->threed_ray[x]) / 2;
+			ray_size = (int)game->threed_ray[x];
 		}
 		else
 		{
 			start = 0;
-			len = SCR_HEIGHT;
+			ray_size = SCR_HEIGHT;
 		}
-		while (len)
+		y = 0;
+		while (y < ray_size)
  		{
-			// color = get_pixel_color(game, texture_img, y, len);
-			ft_pixel_put(&disp_img, y, start, 0x000000);
+			color = get_pixel_color(game, texture, x, y);
+			ft_pixel_put(display, x, start, color);
 			start++;
-			len--;
+			y++;
 		}
 	}
 }
 
-void	draw_3d_game(t_data *data, t_game *game, t_img *img)
+void	draw_3d_game(t_data *data, t_game *game, t_img *displ)
 {
-	img[0].img = mlx_new_image(game->mlx, SCR_WIDTH, SCR_HEIGHT);
-	img[0].addr = mlx_get_data_addr(img[0].img, &img[0].bpp, &img[0].line_len, &img[0].end);
-	printf("image line len = %d\n", img[0].line_len);
-	draw_ceiling(img[0], data->map->ceiling);
-	draw_floor(img[0], data->map->floor);
-	// img[1].addr = mlx_get_data_addr(&(data->map->no), &img[1].bpp, &img[1].line_len, &img[1].end);
-	// printf("texture line len = %d\n", img[1].line_len);
-	// printf("bpp = %d\n", img[1].bpp);
-	// exit(0);
-	// draw_walls(data->game, img[1], img[0]);
-	draw_walls(data->game, img[0]);
-	mlx_put_image_to_window(game->mlx, game->win, img[0].img, 0, 0);
-
-	
+	displ->img = mlx_new_image(game->mlx, SCR_WIDTH, SCR_HEIGHT);
+	displ->addr = mlx_get_data_addr(displ->img, &displ->bpp, &displ->line_len, &displ->end);
+	draw_ceiling(displ, data->map->ceiling);
+	draw_floor(displ, data->map->floor);
+	get_images(game, data->map);
+	//still need a function that will determine which texture will be displayed on which wall
+	draw_walls(data->game, game->text[0].strct, displ);
+	mlx_put_image_to_window(game->mlx, game->win, displ->img, SCR_WIDTH / 2, 0);
 }
