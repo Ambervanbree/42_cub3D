@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 13:46:48 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:48:16 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ typedef struct s_game
 	void	*wall_tile;
 	void	*name;
 	float	*twod_ray;
-    int     pix_nb_x;
-    int     pix_nb_y;
 	float	*threed_ray;
 	t_text	*text;
 }	t_game;
@@ -138,7 +136,6 @@ char	*realloc_line(char *line, int size);
 int		check_map_init_player(t_data *data);
 
 //game play
-//int		init_game(t_data *data, t_game *game);
 int		init_game(t_data *data, t_game *game);
 int		key_event(int keypress, t_data *data);
 void	get_view_points(t_player *player, t_map *map, t_game *game);
@@ -150,5 +147,7 @@ void	draw_2d_game(t_data *data, t_game *game);
 void	ft_pixel_put(t_img *img, int x, int y, int color);
 int		get_pixel_color(t_game *game, t_img img, int x, int y);
 void    get_images(t_game *game, t_map *map);
+void	draw_point(t_game *game, double *point, int color);
+void	display_moving(t_data *data);
 
 #endif

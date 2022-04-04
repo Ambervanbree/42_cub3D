@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 13:47:08 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:52:53 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,38 @@ void	init_map_struct(t_map *map)
 	map->map = NULL;
 }
 
-void	init_player_struct(t_player *player)
+int	init_player_struct(t_player *player)
 {
+	double	total_rays;
+	
 	player->angle = 100;
 	player->dist = 0.5;
+	player->delta = 0.01;
 	player->plane = 11 * PI / 60;
-	total_rays = (int)(player->plane * 2) / player->delta;
+	total_rays = player->plane * 2 / player->delta;
+	player->total_rays = (int)total_rays;
 	player->ray_x = malloc(total_rays * sizeof(t_vector));
 	player->ray_y = malloc(total_rays * sizeof(t_vector));
+	if (!player->ray_x || !player->ray_y)
+		return (error_message("Malloc failed", NULL, 1));
+	return (1);
 }
 
-void	init_game_struct(t_game *game)
+int	init_game_struct(t_game *game)
 {
 	game->floor_tile = NULL;
 	game->wall_tile = NULL;
-	game->name = NULL;
-	game->pix_nb_x = SCR_WIDTH;
-    game->pix_nb_y = SCR_HEIGHT;
+	game->win = NULL;
+	game->mlx = NULL;
 	game->img2D = malloc(1 * sizeof(t_img));
 	game->img3D = malloc(1 * sizeof(t_img));
 	game->text = malloc(4 * sizeof(t_text));
-	game->twod_ray = malloc(1000 * sizeof(float));
-	game->threed_ray = malloc(game->pix_nb_x * sizeof(float));
+	game->img3D[0].img = NULL;
+	game->twod_ray = malloc(SCR_WIDTH * sizeof(float));
+	game->threed_ray = malloc(SCR_WIDTH * sizeof(float));
+	if (!game->img3D || !game->twod_ray || !game->threed_ray)
+		return (error_message("Malloc failed", NULL, 1));
+	return (1);
 }
 
 int	init_structures(t_data *data)
@@ -56,8 +66,8 @@ int	init_structures(t_data *data)
 	data->map = malloc(1 * sizeof(t_map));
 	if (!data->game || !data->player || !data->map)
 		return (error_message("Malloc failed", NULL, 1));
-	init_game_struct(data->game);
-	init_player_struct(data->player);
+	if (!init_game_struct(data->game) || !init_player_struct(data->player))
+		return (0);
 	init_map_struct(data->map);
 	return (1);
 }

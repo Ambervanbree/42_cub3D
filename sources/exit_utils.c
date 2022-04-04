@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 12:50:06 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:51:44 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ void	ft_free_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->wall_tile);
 	if (game->name)
 		mlx_destroy_image(game->mlx, game->name);
-	if (game->img3D)
-	{
+	if (game->img3D[0].img)
 		mlx_destroy_image(game->mlx, game->img3D[0].img);
-		free(game->img3D);
-	}
+	free(game->img3D);
 	if  (game->img2D)
 		free(game->img2D);
 	if (game->win)

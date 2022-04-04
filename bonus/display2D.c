@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 12:09:51 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 17:39:58 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:01:53 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	draw_background(t_game *game, t_map *map)
 }
 
 // Ideally the height and width below would depend on the screen height
-// and width divided by the number of tiles, but this would only work
-// for maps with the same dimensions as the window. For the bonus part
-// of this project we have decided to only take into account maps that
-// are 40 tiles wide and 30 tiles high.
+// and width divided by the number of tiles. With screens that do not have
+// the same dimensions of the windown, calculations would have to be made.
+// To simplify things for the bonus part of this project we have decided
+// to only take into account maps that are 40 tiles wide and 30 tiles high.
 
 void	file_to_image(t_game *game)
 {
@@ -83,6 +83,4 @@ void	draw_2d_game(t_data *data, t_game *game)
 	file_to_image(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->name, 0, 0);
 	draw_background(game, data->map);
-	draw_point(game, data->player->pos, 0xFF0000);
-	draw_point(game, data->player->dir, 0xFF0000);
 }

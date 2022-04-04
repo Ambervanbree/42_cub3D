@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/31 17:49:17 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:48:31 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,37 +60,6 @@ void	get_ray_y_max(int ray_nr, t_player *player, int *box, int *j)
 	}
 }
 
-// not sure where to place the fish eye correction. To me it's more logic
-// if it's below just  before compare_rays, but let's first put 
-// the textures and check after.
-
-void	compare_rays(int total_rays, int ray_nr, t_player *player, t_game *game)
-{
-	int	a;
-	int	i;
-
-	if (fabs(player->sdX) < fabs(player->sdY))
-	{
-		fish_eye_correction(player);
-		player->next_hit = player->ray_x;
-		game->twod_ray[ray_nr] = fabs(player->sdX);
-	}
-	else
-	{
-		fish_eye_correction(player);
-		player->next_hit = player->ray_y;
-		game->twod_ray[ray_nr] = fabs(player->sdY);
-	}
-	a = (int)(game->pix_nb_x / total_rays);
-	if ((ray_nr * a) < game->pix_nb_x - 1)
-	{
-		game->threed_ray[ray_nr * a] = 1 / game->twod_ray[ray_nr] * 500;
-		i = -1;
-		while (++i < a)
-			game->threed_ray[ray_nr * a + i] = game->threed_ray[ray_nr * a];
-	}
-}
-
 void	get_ray_xy(int ray_nr, t_player *player, t_map *map)
 {
 	int	j;
@@ -116,23 +85,49 @@ void	get_ray_xy(int ray_nr, t_player *player, t_map *map)
 	}
 }
 
+// not sure where to place the fish eye correction. To me it's more logic
+// if it's below just  before compare_rays, but let's first put 
+// the textures and check after.
+
+void	compare_rays(int ray_nr, t_player *player, t_game *game)
+{
+	double	a;
+	int		b;
+	int		i;
+
+	if (fabs(player->sdX) < fabs(player->sdY))
+	{
+		fish_eye_correction(player);
+		player->next_hit = player->ray_x;
+		game->twod_ray[ray_nr] = fabs(player->sdX);
+	}
+	else
+	{
+		fish_eye_correction(player);
+		player->next_hit = player->ray_y;
+		game->twod_ray[ray_nr] = fabs(player->sdY);
+	}
+	a = (float)SCR_WIDTH / (float)player->total_rays;
+	b = (int)((float)ray_nr * a);
+	game->threed_ray[b] = 1 / game->twod_ray[ray_nr] * 500;
+	i = -1;
+	while (++i < a)
+		game->threed_ray[b + i] = game->threed_ray[b];
+}
+
 void	get_view_points(t_player *player, t_map *map, t_game *game)
 {
-	double	delta;
 	int		ray_nr;
-	int		total_rays;
 
-	delta = 0.01;
 	player->dir[0] = player->pos[0] + player->dist * cos(player->angle);
 	player->dir[1] = player->pos[1] + player->dist * sin(player->angle);
 	player->ray_angle = correct_angle(player->angle - player->plane);
-	total_rays = (int)(player->plane * 2) / delta;
 	ray_nr = 0;
-	while ((delta * ray_nr) < (player->plane * 2))
+	while (ray_nr < player->total_rays)
 	{
 		get_ray_xy(ray_nr, player, map);
-		compare_rays(total_rays, ray_nr, player, game);
-		player->ray_angle = correct_angle(player->ray_angle + delta);
+		compare_rays(ray_nr, player, game);
+		player->ray_angle = correct_angle(player->ray_angle + player->delta);
 		ray_nr++;
 	}
 }
