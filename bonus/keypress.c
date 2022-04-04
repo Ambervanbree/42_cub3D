@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:04:08 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 16:55:49 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:04:48 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ int	key_event(int keypress, t_data *data)
 	if (keypress == LEFT)
 		data->player->angle = correct_angle(data->player->angle -= 0.1);
 	get_view_points(data->player, data->map, data->game);
-	display(data);
+	display_moving(data);
 	return (0);
 }

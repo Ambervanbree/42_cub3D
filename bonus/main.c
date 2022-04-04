@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/31 18:32:29 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 12:23:01 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	init_player_struct(t_player *player)
 	player->plane = 11 * PI / 60;
 	total_rays = player->plane * 2 / player->delta;
 	player->total_rays = (int)total_rays;
-	printf("total in init %d\n", player->total_rays);
 	player->mouse_x = -1;
 	player->mouse_y = -1;
 	player->ray_x = malloc(player->total_rays * sizeof(t_vector));
@@ -46,11 +45,12 @@ void	init_game_struct(t_game *game)
 {
 	game->floor_tile = NULL;
 	game->wall_tile = NULL;
-	game->pix_nb_x = SCR_WIDTH;
-    game->pix_nb_y = SCR_HEIGHT;
+	game->win = NULL;
+	game->mlx = NULL;
 	game->img3D = malloc(5 * sizeof(t_img));
+	game->img3D[0].img = NULL;
 	game->twod_ray = malloc(1000 * sizeof(float));
-	game->threed_ray = malloc(game->pix_nb_x * sizeof(float));
+	game->threed_ray = malloc(SCR_WIDTH * sizeof(float));
 }
 
 int	init_structures(t_data *data)

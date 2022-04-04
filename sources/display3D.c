@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/31 11:08:55 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 12:43:52 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,9 +142,13 @@ void	draw_walls(t_game *game, t_img disp_img)
 
 void	draw_3d_game(t_data *data, t_game *game, t_img *img)
 {
+	if (img[0].img)
+	{
+		mlx_destroy_image(game->mlx, img[0].img);
+		img[0].img = NULL;
+	}
 	img[0].img = mlx_new_image(game->mlx, SCR_WIDTH, SCR_HEIGHT);
 	img[0].addr = mlx_get_data_addr(img[0].img, &img[0].bpp, &img[0].line_len, &img[0].end);
-	printf("image line len = %d\n", img[0].line_len);
 	draw_ceiling(img[0], data->map->ceiling);
 	draw_floor(img[0], data->map->floor);
 	// img[1].addr = mlx_get_data_addr(&(data->map->no), &img[1].bpp, &img[1].line_len, &img[1].end);
@@ -153,7 +157,5 @@ void	draw_3d_game(t_data *data, t_game *game, t_img *img)
 	// exit(0);
 	// draw_walls(data->game, img[1], img[0]);
 	draw_walls(data->game, img[0]);
-	mlx_put_image_to_window(game->mlx, game->win, img[0].img, 0, 0);
-
-	
+	mlx_put_image_to_window(game->mlx, game->win, img[0].img, 0, 0);	
 }
