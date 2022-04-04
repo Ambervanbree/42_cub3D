@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 13:48:31 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 17:41:32 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,34 +85,30 @@ void	get_ray_xy(int ray_nr, t_player *player, t_map *map)
 	}
 }
 
-// not sure where to place the fish eye correction. To me it's more logic
-// if it's below just  before compare_rays, but let's first put 
-// the textures and check after.
-
 void	compare_rays(int ray_nr, t_player *player, t_game *game)
 {
-	double	a;
 	int		b;
 	int		i;
 
 	if (fabs(player->sdX) < fabs(player->sdY))
 	{
-		fish_eye_correction(player);
 		player->next_hit = player->ray_x;
 		game->twod_ray[ray_nr] = fabs(player->sdX);
 	}
 	else
 	{
-		fish_eye_correction(player);
 		player->next_hit = player->ray_y;
 		game->twod_ray[ray_nr] = fabs(player->sdY);
 	}
-	a = (float)SCR_WIDTH / (float)player->total_rays;
-	b = (int)((float)ray_nr * a);
+	b = (int)((float)ray_nr * player->ratio);
 	game->threed_ray[b] = 1 / game->twod_ray[ray_nr] * 500;
+	game->threed_text[b] = get_wall_texture(player);
 	i = -1;
-	while (++i < a)
+	while (++i < player->ratio)
+	{
 		game->threed_ray[b + i] = game->threed_ray[b];
+		game->threed_text[b + i] = game->threed_text[b];
+	}
 }
 
 void	get_view_points(t_player *player, t_map *map, t_game *game)
@@ -126,8 +122,10 @@ void	get_view_points(t_player *player, t_map *map, t_game *game)
 	while (ray_nr < player->total_rays)
 	{
 		get_ray_xy(ray_nr, player, map);
+		fish_eye_correction(player);
 		compare_rays(ray_nr, player, game);
 		player->ray_angle = correct_angle(player->ray_angle + player->delta);
 		ray_nr++;
 	}
+	
 }

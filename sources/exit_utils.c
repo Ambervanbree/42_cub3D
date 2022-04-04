@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 13:51:44 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:08:25 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,12 @@
 
 void	ft_free_game(t_game *game)
 {
-	if (game->floor_tile)
-		mlx_destroy_image(game->mlx, game->floor_tile);
-	if (game->wall_tile)
-		mlx_destroy_image(game->mlx, game->wall_tile);
-	if (game->name)
-		mlx_destroy_image(game->mlx, game->name);
-	if (game->img3D[0].img)
-		mlx_destroy_image(game->mlx, game->img3D[0].img);
-	free(game->img3D);
-	if  (game->img2D)
-		free(game->img2D);
+	if (game->img3D)
+	{
+		if (game->img3D->img)
+			mlx_destroy_image(game->mlx, game->img3D->img);
+		free(game->img3D);
+	}
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
@@ -32,8 +27,14 @@ void	ft_free_game(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	free(game->twod_ray);
-	free(game->threed_ray);
+	if (game->threed_text)
+		free(game->threed_text);
+	if (game->text)
+		free(game->text);
+	if (game->twod_ray)
+		free(game->twod_ray);
+	if (game->threed_ray)
+		free(game->threed_ray);
 }
 
 void	ft_free_map(t_map *map)

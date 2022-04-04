@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 13:50:31 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:10:56 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,19 @@ void	draw_floor(t_img *img, int color)
 	}
 }
 
-void	draw_walls(t_game *game, t_img texture, t_img *display)
+void	draw_walls(t_game *game, t_img *display)
 {
 	int	x;
 	int	y;
 	int	start;
 	int	ray_size;
+	int	wall;
 	int	color;
 
 	x = -1;
 	while (++x < SCR_WIDTH)
 	{
+		wall = game->threed_text[x];
 		if ((int)game->threed_ray[x] < SCR_HEIGHT)
 		{
 			start = (SCR_HEIGHT - (int)game->threed_ray[x]) / 2;
@@ -74,22 +76,27 @@ void	draw_walls(t_game *game, t_img texture, t_img *display)
 		y = 0;
 		while (y < ray_size)
  		{
-			color = get_pixel_color(game, texture, x, y);
+			color = get_pixel_color(game, game->text[wall].strct, x, y);
 			ft_pixel_put(display, x, start, color);
 			start++;
 			y++;
 		}
+		printf("x is %d, wall size is %d\n", x, ray_size);
 	}
 }
 
 void	draw_3d_game(t_data *data, t_game *game, t_img *displ)
 {
+	if (displ->img)
+	{
+		mlx_destroy_image(game->mlx, displ->img);
+		displ->img = NULL;
+	}
 	displ->img = mlx_new_image(game->mlx, SCR_WIDTH, SCR_HEIGHT);
 	displ->addr = mlx_get_data_addr(displ->img, &displ->bpp, &displ->line_len, &displ->end);
 	draw_ceiling(displ, data->map->ceiling);
 	draw_floor(displ, data->map->floor);
 	get_images(game, data->map);
-	//still need a function that will determine which texture will be displayed on which wall
-	draw_walls(data->game, game->text[0].strct, displ);
-	mlx_put_image_to_window(game->mlx, game->win, displ->img, SCR_WIDTH / 2, 0);
+	draw_walls(game, displ);
+	mlx_put_image_to_window(game->mlx, game->win, displ->img, 0, 0);
 }

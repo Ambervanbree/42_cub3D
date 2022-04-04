@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./textures/green_bricks.xpm
+SO ./textures/red_bricks.xpm
+WE ./textures/green_bricks.xpm
+EA ./textures/red_bricks.xpm
 F 130,200,0
 C 65,195,230
 

@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 13:48:16 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 17:20:41 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@
 # define CEILING 0x00ffff
 # define FLOOR 0x00ff00
 # define WALL 0x999999
+# define NORTH 1
+# define SOUTH 2
+# define EAST 3
+# define WEST 4
 
 enum e_enum
 {
@@ -63,7 +67,6 @@ typedef struct s_text
 	int		height;
 }	t_text;
 
-
 typedef struct s_game
 {
 	void	*mlx;
@@ -75,12 +78,12 @@ typedef struct s_game
 	void	*name;
 	float	*twod_ray;
 	float	*threed_ray;
+	int		*threed_text;
 	t_text	*text;
 }	t_game;
 
 typedef struct s_player
 {
-	int			set;
 	t_vector	pos;
 	t_vector	dir;
 	t_vector	*next_hit;
@@ -89,6 +92,7 @@ typedef struct s_player
 	double		plane;
 	double		dist;
 	double		delta;
+	double		ratio;
 	int			total_rays;
 	double		sdX;
 	double		sdY;
@@ -149,5 +153,6 @@ int		get_pixel_color(t_game *game, t_img img, int x, int y);
 void    get_images(t_game *game, t_map *map);
 void	draw_point(t_game *game, double *point, int color);
 void	display_moving(t_data *data);
+int		get_wall_texture(t_player *player);
 
 #endif

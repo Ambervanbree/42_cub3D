@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display3D_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 10:32:52 by cproesch          #+#    #+#             */
-/*   Updated: 2022/03/31 18:42:43 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/04 17:52:30 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_pixel_put(t_img *img, int x, int y, int color)
 
 void    get_images(t_game *game, t_map *map)
 {
-    game->text[0].strct.img = mlx_xpm_file_to_image(game->mlx, map->no, &game->text[0].width, &game->text[0].height);
+	game->text[0].strct.img = mlx_xpm_file_to_image(game->mlx, map->no, &game->text[0].width, &game->text[0].height);
 	if (!game->text[0].strct.img)
         error_message("Mlx_xpm_file_to_image failed", NULL, 1);
     game->text[0].strct.addr = mlx_get_data_addr(game->text[0].strct.img, &game->text[0].strct.bpp, &game->text[0].strct.line_len, &game->text[0].strct.end);

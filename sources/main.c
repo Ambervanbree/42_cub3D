@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 13:52:53 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 17:37:00 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	init_player_struct(t_player *player)
 	player->plane = 11 * PI / 60;
 	total_rays = player->plane * 2 / player->delta;
 	player->total_rays = (int)total_rays;
+	player->ratio = SCR_WIDTH / player->total_rays;
 	player->ray_x = malloc(total_rays * sizeof(t_vector));
 	player->ray_y = malloc(total_rays * sizeof(t_vector));
 	if (!player->ray_x || !player->ray_y)
@@ -44,17 +45,24 @@ int	init_player_struct(t_player *player)
 
 int	init_game_struct(t_game *game)
 {
+	int	i;
+	
 	game->floor_tile = NULL;
 	game->wall_tile = NULL;
 	game->win = NULL;
 	game->mlx = NULL;
-	game->img2D = malloc(1 * sizeof(t_img));
 	game->img3D = malloc(1 * sizeof(t_img));
+	game->img3D->img = NULL;
 	game->text = malloc(4 * sizeof(t_text));
-	game->img3D[0].img = NULL;
+	i = -1;
+	while (++i < 4)
+		game->text[i].strct.img = NULL;
+	game->twod_ray = NULL;
+	game->threed_ray = NULL;
 	game->twod_ray = malloc(SCR_WIDTH * sizeof(float));
 	game->threed_ray = malloc(SCR_WIDTH * sizeof(float));
-	if (!game->img3D || !game->twod_ray || !game->threed_ray)
+	game->threed_text = malloc(SCR_WIDTH * sizeof(int));
+	if (!game->img3D || !game->text || !game->twod_ray || !game->threed_ray || !game->threed_text)
 		return (error_message("Malloc failed", NULL, 1));
 	return (1);
 }
