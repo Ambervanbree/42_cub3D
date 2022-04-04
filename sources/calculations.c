@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 17:41:32 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:13:53 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	compare_rays(int ray_nr, t_player *player, t_game *game)
 		game->threed_ray[b + i] = game->threed_ray[b];
 		game->threed_text[b + i] = game->threed_text[b];
 	}
+	//// something goes wrong here and because of that the last rays are at 0.
 }
 
 void	get_view_points(t_player *player, t_map *map, t_game *game)
