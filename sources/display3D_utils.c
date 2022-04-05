@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 10:32:52 by cproesch          #+#    #+#             */
-/*   Updated: 2022/04/04 17:52:30 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:56:07 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ void	ft_pixel_put(t_img *img, int x, int y, int color)
 
 void    get_images(t_game *game, t_map *map)
 {
-	game->text[0].strct.img = mlx_xpm_file_to_image(game->mlx, map->no, &game->text[0].width, &game->text[0].height);
-	if (!game->text[0].strct.img)
+	game->text[NORTH].strct.img = mlx_xpm_file_to_image(game->mlx, map->no, &game->text[NORTH].width, &game->text[NORTH].height);
+	if (!game->text[NORTH].strct.img)
         error_message("Mlx_xpm_file_to_image failed", NULL, 1);
-    game->text[0].strct.addr = mlx_get_data_addr(game->text[0].strct.img, &game->text[0].strct.bpp, &game->text[0].strct.line_len, &game->text[0].strct.end);
-    game->text[1].strct.img = mlx_xpm_file_to_image(game->mlx, map->so, &game->text[1].width, &game->text[1].height);
-	if (!game->text[1].strct.img)
+    game->text[NORTH].strct.addr = mlx_get_data_addr(game->text[NORTH].strct.img, &game->text[NORTH].strct.bpp, &game->text[NORTH].strct.line_len, &game->text[NORTH].strct.end);
+    game->text[SOUTH].strct.img = mlx_xpm_file_to_image(game->mlx, map->so, &game->text[SOUTH].width, &game->text[SOUTH].height);
+	if (!game->text[SOUTH].strct.img)
         error_message("Mlx_xpm_file_to_image failed", NULL, 1);
-    game->text[1].strct.addr = mlx_get_data_addr(game->text[1].strct.img, &game->text[1].strct.bpp, &game->text[1].strct.line_len, &game->text[1].strct.end);
-    game->text[2].strct.img = mlx_xpm_file_to_image(game->mlx, map->we, &game->text[2].width, &game->text[2].height);
-	if (!game->text[2].strct.img)
+    game->text[SOUTH].strct.addr = mlx_get_data_addr(game->text[SOUTH].strct.img, &game->text[SOUTH].strct.bpp, &game->text[SOUTH].strct.line_len, &game->text[SOUTH].strct.end);
+    game->text[WEST].strct.img = mlx_xpm_file_to_image(game->mlx, map->we, &game->text[WEST].width, &game->text[WEST].height);
+	if (!game->text[WEST].strct.img)
         error_message("Mlx_xpm_file_to_image failed", NULL, 1);
-    game->text[2].strct.addr = mlx_get_data_addr(game->text[2].strct.img, &game->text[2].strct.bpp, &game->text[2].strct.line_len, &game->text[2].strct.end);
-    game->text[3].strct.img = mlx_xpm_file_to_image(game->mlx, map->ea, &game->text[3].width, &game->text[3].height);
-	if (!game->text[3].strct.img)
+    game->text[WEST].strct.addr = mlx_get_data_addr(game->text[WEST].strct.img, &game->text[WEST].strct.bpp, &game->text[WEST].strct.line_len, &game->text[WEST].strct.end);
+    game->text[EAST].strct.img = mlx_xpm_file_to_image(game->mlx, map->ea, &game->text[EAST].width, &game->text[EAST].height);
+	if (!game->text[EAST].strct.img)
         error_message("Mlx_xpm_file_to_image failed", NULL, 1);
-    game->text[3].strct.addr = mlx_get_data_addr(game->text[3].strct.img, &game->text[3].strct.bpp, &game->text[3].strct.line_len, &game->text[3].strct.end);
+    game->text[EAST].strct.addr = mlx_get_data_addr(game->text[EAST].strct.img, &game->text[EAST].strct.bpp, &game->text[EAST].strct.line_len, &game->text[EAST].strct.end);
 }
 
 int	get_pixel_color(t_game *game, t_img img, int x, int y)
