@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/05 10:38:06 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:45:20 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,19 @@ void	compare_rays(int ray_nr, t_player *player, t_game *game)
 	int		b;
 	int		i;
 
+	b = (int)((float)ray_nr * player->ratio);
 	if (fabs(player->sdX) < fabs(player->sdY))
 	{
 		player->next_hit = player->ray_x;
 		game->twod_ray[ray_nr] = fabs(player->sdX);
+		game->threed_hit[b] = player->ray_x[ray_nr][1];
 	}
 	else
 	{
 		player->next_hit = player->ray_y;
 		game->twod_ray[ray_nr] = fabs(player->sdY);
+		game->threed_hit[b] = player->ray_y[ray_nr][0];
 	}
-	b = (int)((float)ray_nr * player->ratio);
 	game->threed_ray[b] = 1 / game->twod_ray[ray_nr] * 500;
 	game->threed_text[b] = get_wall_texture(player);
 	i = -1;
@@ -108,6 +110,7 @@ void	compare_rays(int ray_nr, t_player *player, t_game *game)
 	{
 		game->threed_ray[b + i] = game->threed_ray[b];
 		game->threed_text[b + i] = game->threed_text[b];
+		game->threed_hit[b + i] = game->threed_hit[b];
 	}
 }
 

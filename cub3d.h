@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/05 11:57:02 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:16:26 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ typedef struct s_game
 	void	*mlx;
 	t_img	*img3D;
 	void	*name;
-	float	*twod_ray;
-	float	*threed_ray;
+	double	*twod_ray;
+	double	*threed_ray;
 	int		*threed_text;
+	double	*threed_hit;
 	t_text	*text;
 }	t_game;
 
@@ -148,7 +149,7 @@ void	draw_3d_game(t_data *data, t_game *game, t_img *img);
 void	fish_eye_correction(t_player *player);
 void	draw_2d_game(t_data *data, t_game *game);
 void	ft_pixel_put(t_img *img, int x, int y, int color);
-int		get_pixel_color(t_game *game, t_img img, int x, int y);
+int		get_pixel_color(t_game *game, t_text text, int y, int x);
 void    get_images(t_game *game, t_map *map);
 void	draw_point(t_game *game, double *point, int color);
 void	display_moving(t_data *data);

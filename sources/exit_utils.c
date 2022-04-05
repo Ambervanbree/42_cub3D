@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/05 12:39:45 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:06:38 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	ft_free_game(t_game *game)
 		free(game->twod_ray);
 	if (game->threed_ray)
 		free(game->threed_ray);
+	if (game->threed_hit)
+		free(game->threed_hit);
 }
 
 void	ft_free_map(t_map *map)

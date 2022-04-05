@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:00:47 by cproesch          #+#    #+#             */
-/*   Updated: 2022/04/05 13:32:54 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 15:09:30 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ double	correct_angle(double angle)
 int	get_wall_texture(t_player *player)
 {
 	if (player->sdX < player->sdY)
-		if (player->ray_angle > PI / 2 || player->ray_angle < PI + PI / 2)
+		if (player->ray_angle < PI / 2 || player->ray_angle > PI + PI / 2)
 			return (NORTH);
 		else
 			return (SOUTH);

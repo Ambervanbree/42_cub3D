@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 10:32:52 by cproesch          #+#    #+#             */
-/*   Updated: 2022/04/05 11:56:07 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:46:12 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,18 @@ void    get_images(t_game *game, t_map *map)
     game->text[EAST].strct.addr = mlx_get_data_addr(game->text[EAST].strct.img, &game->text[EAST].strct.bpp, &game->text[EAST].strct.line_len, &game->text[EAST].strct.end);
 }
 
-int	get_pixel_color(t_game *game, t_img img, int x, int y)
+int	get_pixel_color(t_game *game, t_text text, int y, int x)
 {
 	int	    color;
 	double	height_ratio;
-	int	    texture_y;
+	int		texture_y;
 	int 	texture_x;
 
-    height_ratio = game->text[0].height / game->threed_ray[x];
+	height_ratio = text.height / game->threed_ray[x];
 	texture_y = (int)(y * height_ratio);
-	texture_x = (int)(x * height_ratio) % game->text[0].width;
-	color = (int)((int*)img.addr)[texture_y * game->text[0].width + texture_x];
+	texture_x = (int)((game->threed_hit[x] - floor(game->threed_hit[x])) * (float)text.width);
+	// texture_x = (int)(wall * height_ratio) % text.width;
+	color = (int)((int*)text.strct.addr)[texture_y * text.width + texture_x];
 	return (color);
 }
 

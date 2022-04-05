@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/05 12:50:22 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:47:29 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	draw_walls(t_game *game, t_img *display)
 		}
 		while (y < ray_size)
  		{
-			color = get_pixel_color(game, game->text[game->threed_text[x]].strct, x, y);
+			color = get_pixel_color(game, game->text[game->threed_text[x]], y, x);
 			ft_pixel_put(display, x, start, color);
 			start++;
 			y++;
