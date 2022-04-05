@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/05 10:26:29 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 10:51:23 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	draw_3d_game(t_data *data, t_game *game, t_img *displ)
 	displ->addr = mlx_get_data_addr(displ->img, &displ->bpp, &displ->line_len, &displ->end);
 	draw_ceiling(displ, data->map->ceiling);
 	draw_floor(displ, data->map->floor);
-	get_images(game, data->map);
 	draw_walls(game, displ);
 	mlx_put_image_to_window(game->mlx, game->win, displ->img, 0, 0);
 }

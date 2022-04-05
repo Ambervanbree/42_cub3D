@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 18:08:25 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:04:45 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,23 @@
 
 void	ft_free_game(t_game *game)
 {
+	int	i;
+	
 	if (game->img3D)
 	{
 		if (game->img3D->img)
 			mlx_destroy_image(game->mlx, game->img3D->img);
 		free(game->img3D);
+	}
+	if (game->text)
+	{
+		i = -1;
+		while (++i < 4)
+		{
+			if (game->text[i].strct.img)
+				mlx_destroy_image(game->mlx, game->text[i].strct.img);
+		}
+		free(game->text);
 	}
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
@@ -29,8 +41,6 @@ void	ft_free_game(t_game *game)
 	}
 	if (game->threed_text)
 		free(game->threed_text);
-	if (game->text)
-		free(game->text);
 	if (game->twod_ray)
 		free(game->twod_ray);
 	if (game->threed_ray)
