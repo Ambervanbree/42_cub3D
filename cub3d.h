@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 17:20:41 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 11:56:07 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@
 # define CEILING 0x00ffff
 # define FLOOR 0x00ff00
 # define WALL 0x999999
-# define NORTH 1
-# define SOUTH 2
+# define NORTH 0
+# define SOUTH 1
+# define WEST 2
 # define EAST 3
-# define WEST 4
 
 enum e_enum
 {
