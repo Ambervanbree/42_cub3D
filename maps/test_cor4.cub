@@ -5,7 +5,7 @@ C 65,195,230
 
 
 NO ./textures/wood1_small.xpm
-SO ./textures/wood2_small.xpm
+SO ./textures/cat.xpm
 WE ./textures/hedge1_small.xpm
 EA ./textures/hedge2_small.xpm
 
