@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display3D_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 10:32:52 by cproesch          #+#    #+#             */
-/*   Updated: 2022/04/05 16:46:12 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 17:14:42 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	get_pixel_color(t_game *game, t_text text, int y, int x)
 	height_ratio = text.height / game->threed_ray[x];
 	texture_y = (int)(y * height_ratio);
 	texture_x = (int)((game->threed_hit[x] - floor(game->threed_hit[x])) * (float)text.width);
-	// texture_x = (int)(wall * height_ratio) % text.width;
 	color = (int)((int*)text.strct.addr)[texture_y * text.width + texture_x];
 	return (color);
 }
