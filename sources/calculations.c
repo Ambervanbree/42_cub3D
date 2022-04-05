@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 18:13:53 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 10:21:57 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	compare_rays(int ray_nr, t_player *player, t_game *game)
 	b = (int)((float)ray_nr * player->ratio);
 	game->threed_ray[b] = 1 / game->twod_ray[ray_nr] * 500;
 	game->threed_text[b] = get_wall_texture(player);
+	printf("player ratio %f\n", player->ratio);
 	i = -1;
 	while (++i < player->ratio)
 	{
