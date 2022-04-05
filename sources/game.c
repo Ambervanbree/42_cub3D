@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:30:45 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/05 11:07:36 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:51:46 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	init_game(t_data *data, t_game *game)
 		return (0);
 	get_images(game, data->map);
 	get_view_points(data->player, data->map, data->game);
-display(data);		
+	display(data);		
 	mlx_hook(game->win, 2, 1L << 0, &key_event, data);
 	mlx_hook(game->win, 17, 0, &redcross_exit, data);
 	mlx_loop(game->mlx);

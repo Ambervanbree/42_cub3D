@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/05 10:51:23 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:50:22 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,26 @@ void	draw_walls(t_game *game, t_img *display)
 	int	y;
 	int	start;
 	int	ray_size;
-	int	wall;
 	int	color;
 
 	x = -1;
 	while (++x < SCR_WIDTH)
 	{
-		wall = game->threed_text[x];
-		if ((int)game->threed_ray[x] < SCR_HEIGHT)
+		ray_size = (int)game->threed_ray[x];
+		if (ray_size < SCR_HEIGHT)
 		{
-			start = (SCR_HEIGHT - (int)game->threed_ray[x]) / 2;
-			ray_size = (int)game->threed_ray[x];
+			start = (SCR_HEIGHT - ray_size) / 2;
+			y = 0;
 		}
 		else
 		{
 			start = 0;
-			ray_size = SCR_HEIGHT;
+			y = ((int)game->threed_ray[x] - SCR_HEIGHT) / 2;
+			ray_size = SCR_HEIGHT + y;
 		}
-		y = 0;
 		while (y < ray_size)
  		{
-			color = get_pixel_color(game, game->text[wall].strct, x, y);
+			color = get_pixel_color(game, game->text[game->threed_text[x]].strct, x, y);
 			ft_pixel_put(display, x, start, color);
 			start++;
 			y++;
