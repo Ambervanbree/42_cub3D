@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:00:47 by cproesch          #+#    #+#             */
-/*   Updated: 2022/03/30 17:42:59 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:25:37 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,17 @@ double	correct_angle(double angle)
 	return (angle);
 }
 
-// void	get_wall_texture(t_player *player)
-// {
-// 	if (player->sdX < player->sdY)
-// 		if (player->ray_angle < PI)
-// 			//wall texture is NORTH
-// 		else
-// 			//wall texture is SOUTH
-// 	else
-// 		if (player->ray_angle > PI / 2 || player->ray_angle < PI + PI / 2)
-// 			//wall texture is EAST
-// 		else
-// 			//wall texture is WEST
-// }
+int	get_wall_texture(t_player *player)
+{
+	if (player->sdX < player->sdY)
+		if (player->ray_angle < PI)
+			return (NORTH);
+		else
+			return (SOUTH);
+	else
+		if (player->ray_angle > PI / 2 || player->ray_angle < PI + PI / 2)
+			return (EAST);
+		else
+			return (WEST);
+}
+

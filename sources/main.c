@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/05 11:04:54 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:22:04 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ int	init_game_struct(t_game *game)
 	i = -1;
 	while (++i < 4)
 		game->text[i].strct.img = NULL;
-	game->twod_ray = NULL;
-	game->threed_ray = NULL;
 	game->twod_ray = malloc(SCR_WIDTH * sizeof(float));
 	game->threed_ray = malloc(SCR_WIDTH * sizeof(float));
 	game->threed_text = malloc(SCR_WIDTH * sizeof(int));
