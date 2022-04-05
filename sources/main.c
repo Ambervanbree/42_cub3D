@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 17:37:00 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 10:24:19 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	init_player_struct(t_player *player)
 	player->plane = 11 * PI / 60;
 	total_rays = player->plane * 2 / player->delta;
 	player->total_rays = (int)total_rays;
-	player->ratio = SCR_WIDTH / player->total_rays;
+	player->ratio = (float)SCR_WIDTH / (float)player->total_rays;
 	player->ray_x = malloc(total_rays * sizeof(t_vector));
 	player->ray_y = malloc(total_rays * sizeof(t_vector));
 	if (!player->ray_x || !player->ray_y)

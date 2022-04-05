@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 18:10:56 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/05 10:26:29 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	draw_walls(t_game *game, t_img *display)
 			start++;
 			y++;
 		}
-		printf("x is %d, wall size is %d\n", x, ray_size);
 	}
 }
 
