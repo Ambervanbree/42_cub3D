@@ -4,10 +4,10 @@ F 130,200,0
 C 65,195,230
 
 
-NO ./textures/green_bricks.xpm
-SO ./textures/red_bricks.xpm
-WE ./textures/green_bricks.xpm
-EA ./textures/red_bricks.xpm
+NO ./textures/wood1_small.xpm
+SO ./textures/wood2_small.xpm
+WE ./textures/hedge1_small.xpm
+EA ./textures/hedge2_small.xpm
 
 
 

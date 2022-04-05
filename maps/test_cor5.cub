@@ -1,7 +1,7 @@
 NO ./textures/green_bricks.xpm
 SO ./textures/red_bricks.xpm
-WE ./textures/green_bricks.xpm
-EA ./textures/red_bricks.xpm
+WE ./textures/hedge_text2.xpm
+EA ./textures/wood_text2.xpm
 F 130,200,0
 
 C 65,195,230
