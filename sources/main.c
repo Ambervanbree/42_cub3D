@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 11:16:58 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 11:34:05 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_map_struct(t_map *map)
 int	init_player_struct(t_player *player)
 {
 	double	total_rays;
-	
+
 	player->angle = 100;
 	player->dist = 0.5;
 	player->delta = 0.01;
@@ -46,7 +46,7 @@ int	init_player_struct(t_player *player)
 int	init_game_struct(t_game *game)
 {
 	int	i;
-	
+
 	game->floor_tile = NULL;
 	game->wall_tile = NULL;
 	game->win = NULL;
