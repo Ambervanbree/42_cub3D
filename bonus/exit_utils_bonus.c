@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_utils.c                                       :+:      :+:    :+:   */
+/*   exit_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/05 12:40:18 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/06 11:18:34 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 void	ft_free_game(t_game *game)
 {
 	int	i;
-
-	if (game->floor_tile)
-		mlx_destroy_image(game->mlx, game->floor_tile);
-	if (game->wall_tile)
-		mlx_destroy_image(game->mlx, game->wall_tile);
+	
 	if (game->img3D)
 	{
 		if (game->img3D->img)
@@ -49,6 +45,8 @@ void	ft_free_game(t_game *game)
 		free(game->twod_ray);
 	if (game->threed_ray)
 		free(game->threed_ray);
+	if (game->threed_hit)
+		free(game->threed_hit);
 }
 
 void	ft_free_map(t_map *map)
