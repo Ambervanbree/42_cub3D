@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 10:50:21 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 15:06:42 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/06 10:58:43 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	*get_path_texture(char *line)
 {
 	int		i;
+	int		fd;
 	char	*path;
 
 	i = 2;
@@ -23,6 +24,13 @@ char	*get_path_texture(char *line)
 	path = ft_strdup(&line[i]);
 	path[ft_strlen(path) - 1] = '\0';
 	free_string(&line);
+	fd = open(path, O_RDONLY);
+	close (fd);
+	if (fd == -1)
+	{
+		free_string(&path);
+		return (NULL);
+	}
 	return (path);
 }
 
