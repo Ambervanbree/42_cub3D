@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 17:06:05 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:19:21 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,5 +156,7 @@ void	draw_point(t_game *game, double *point, int color);
 int		get_wall_texture(t_player *player);
 void	draw_background(t_game *game, t_map *map);
 void	file_to_image(t_game *game);
+float	hit_wall_x2(t_data *data, int *j, double angle, int *box);
+float	hit_wall_y2(t_data *data, int *j, double angle, int *box);
 
 #endif
