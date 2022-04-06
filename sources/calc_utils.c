@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:00:47 by cproesch          #+#    #+#             */
-/*   Updated: 2022/04/05 15:09:30 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:08:19 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,17 @@ double	correct_angle(double angle)
 int	get_wall_texture(t_player *player)
 {
 	if (player->sdX < player->sdY)
+	{
 		if (player->ray_angle < PI / 2 || player->ray_angle > PI + PI / 2)
 			return (NORTH);
 		else
 			return (SOUTH);
+	}
 	else
+	{
 		if (player->ray_angle < PI)
 			return (EAST);
 		else
 			return (WEST);
+	}
 }
