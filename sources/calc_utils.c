@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:00:47 by cproesch          #+#    #+#             */
-/*   Updated: 2022/04/06 15:22:28 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:25:20 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ int	get_wall_texture(t_player *player)
 	if (player->sdx < player->sdy)
 	{
 		if (player->ray_angle < PI / 2 || player->ray_angle > PI + PI / 2)
-			return (NORTH);
+			return (EAST);
 		else
 			return (SOUTH);
 	}
 	else
 	{
 		if (player->ray_angle < PI)
-			return (EAST);
+			return (NORTH);
 		else
 			return (WEST);
 	}
