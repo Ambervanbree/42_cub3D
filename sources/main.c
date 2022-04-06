@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 15:36:06 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:05:44 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	main(int argc, char *argv[])
 		free_and_exit(&data, 1);
 	if (!parse_init_map(data.map, argv[1]))
 		free_and_exit(&data, 1);
-	if (!check_map_init_player(&data))
+	if (!check_map_init_player(data.map, data.player))
 		free_and_exit(&data, 1);
 	if (!init_game(&data, data.game))
 		free_and_exit(&data, 1);
