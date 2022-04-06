@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 12:09:51 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 13:01:53 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 12:56:19 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_point(t_game *game, double *point, int color)
 		x = 0;
 		while (x < 5)
 		{
-			mlx_pixel_put(game->mlx, game->win, point[0] * 20 + x,
+			mlx_pixel_put(game->mlx, game->win, point[0] * 20 + x + SCR_WIDTH,
 				point[1] * 20 + y + code, color);
 			x++;
 		}
@@ -48,10 +48,10 @@ void	draw_background(t_game *game, t_map *map)
 		{
 			if (map->map[y][x] == '0')
 				mlx_put_image_to_window(game->mlx, game->win, game->floor_tile,
-					x * 20, y * 20 + code);
+					x * 20 + SCR_WIDTH, y * 20 + code);
 			if (map->map[y][x] == '1')
 				mlx_put_image_to_window(game->mlx, game->win, game->wall_tile,
-					x * 20, y * 20 + code);
+					x * 20 + SCR_WIDTH, y * 20 + code);
 			x++;
 		}
 		y++;
@@ -76,11 +76,4 @@ void	file_to_image(t_game *game)
 	w = SCR_WIDTH / 2;
 	h = SCR_HEIGHT / 2;
 	game->name = mlx_xpm_file_to_image(game->mlx, NAME, &w, &h);
-}
-
-void	draw_2d_game(t_data *data, t_game *game)
-{
-	file_to_image(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->name, 0, 0);
-	draw_background(game, data->map);
 }

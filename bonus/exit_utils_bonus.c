@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 11:18:34 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 12:33:49 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ void	ft_free_game(t_game *game)
 		}
 		free(game->text);
 	}
+	if (game->name)
+		mlx_destroy_image(game->mlx, game->name);
+	if (game->floor_tile)
+		mlx_destroy_image(game->mlx, game->floor_tile);
+	if (game->wall_tile)
+		mlx_destroy_image(game->mlx, game->wall_tile);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)

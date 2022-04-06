@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 11:09:14 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 12:58:32 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-# define PIC_BACK "./images/floor3.xpm"
+# define PIC_BACK "./images/floor.xpm"
 # define PIC_WALL "./images/wall.xpm"
 # define NAME "./images/name.xpm"
 # define SCR_WIDTH 800
@@ -75,6 +75,8 @@ typedef struct s_game
 	void	*mlx;
 	t_img	*img3D;
 	void	*name;
+	void	*player;
+	void	*direction;
 	double	*twod_ray;
 	double	*threed_ray;
 	int		*threed_text;
@@ -147,11 +149,12 @@ double	correct_angle(double angle);
 int		display(t_data *data);
 void	draw_3d_game(t_data *data, t_game *game, t_img *img);
 void	fish_eye_correction(t_player *player);
-void	draw_2d_game(t_data *data, t_game *game);
 void	ft_pixel_put(t_img *img, int x, int y, int color);
 int		get_pixel_color(t_game *game, t_text text, int y, int x);
 void    get_images(t_game *game, t_map *map);
 void	draw_point(t_game *game, double *point, int color);
 int		get_wall_texture(t_player *player);
+void	draw_background(t_game *game, t_map *map);
+void	file_to_image(t_game *game);
 
 #endif

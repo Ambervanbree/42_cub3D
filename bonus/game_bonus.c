@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:30:45 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 11:08:47 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 12:57:47 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ int	init_window(t_game *game)
 	return (1);
 }
 
-void	display_static(t_data *data)
+void	display_static(t_game *game)
 {
-	draw_2d_game(data, data->game);
+	mlx_put_image_to_window(game->mlx, game->win, game->name, SCR_WIDTH, 0);
 }
 
 int	display(t_data *data)
 {
 	draw_3d_game(data, data->game, data->game->img3D);
+	draw_background(data->game, data->map);
 	draw_point(data->game, data->player->pos, 0xFF0000);
 	draw_point(data->game, data->player->dir, 0xFF0000);
 	return (0);
@@ -68,7 +69,9 @@ int	init_game(t_data *data, t_game *game)
 	if (!init_window(game))
 		return (0);
 	get_view_points(data->player, data->map, data->game);
-	display_static(data);
+	get_images(game, data->map);
+	file_to_image(game);
+	display_static(data->game);
 	display(data);
 	mlx_hook(game->win, 2, 1L << 0, &key_event, data);
 	mlx_hook(game->win, 17, 0, &redcross_exit, data);
