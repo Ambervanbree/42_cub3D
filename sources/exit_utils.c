@@ -6,16 +6,16 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 10:53:37 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:11:11 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_free_game(t_game *game)
+void	ft_destroy_images(t_game *game)
 {
 	int	i;
-	
+
 	if (game->img3D)
 	{
 		if (game->img3D->img)
@@ -32,6 +32,11 @@ void	ft_free_game(t_game *game)
 		}
 		free(game->text);
 	}
+}
+
+void	ft_free_game(t_game *game)
+{
+	ft_destroy_images(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
