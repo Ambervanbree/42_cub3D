@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 10:32:52 by cproesch          #+#    #+#             */
-/*   Updated: 2022/04/05 17:36:04 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 11:25:06 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	get_pixel_color(t_game *game, t_text text, int y, int x)
 
 	height_ratio = text.height / game->threed_ray[x];
 	texture_y = (int)(y * height_ratio);
-	texture_x = (int)((game->threed_hit[x] - floor(game->threed_hit[x])) * (float)text.width);
+	texture_x = (int)((game->threed_hit[x] - floor(game->threed_hit[x])) * (double)text.width);
 	color = (int)((int*)text.strct.addr)[texture_y * text.width + texture_x];
 	return (color);
 }

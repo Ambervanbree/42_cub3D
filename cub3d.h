@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/05 16:16:26 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 11:09:14 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,6 @@ void	ft_pixel_put(t_img *img, int x, int y, int color);
 int		get_pixel_color(t_game *game, t_text text, int y, int x);
 void    get_images(t_game *game, t_map *map);
 void	draw_point(t_game *game, double *point, int color);
-void	display_moving(t_data *data);
 int		get_wall_texture(t_player *player);
 
 #endif

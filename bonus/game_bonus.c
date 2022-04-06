@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   game_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:30:45 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/04 13:04:30 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 11:08:47 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ void	display_static(t_data *data)
 	draw_2d_game(data, data->game);
 }
 
-void	display_moving(t_data *data)
+int	display(t_data *data)
 {
 	draw_3d_game(data, data->game, data->game->img3D);
 	draw_point(data->game, data->player->pos, 0xFF0000);
 	draw_point(data->game, data->player->dir, 0xFF0000);
+	return (0);
 }
 
 int	mouse_event(t_data *data)
@@ -51,13 +52,13 @@ int	mouse_event(t_data *data)
 	{
 		data->player->angle = correct_angle(data->player->angle += 0.1);
 		get_view_points(data->player, data->map, data->game);
-		display_moving(data);
+		display(data);
 	}
 	else if (old_mouse_x != -1 && old_mouse_x / 10 > data->player->mouse_x / 10)
 	{
 		data->player->angle = correct_angle(data->player->angle -= 0.1);
 		get_view_points(data->player, data->map, data->game);
-		display_moving(data);
+		display(data);
 	}
 	return (1);
 }
@@ -68,7 +69,7 @@ int	init_game(t_data *data, t_game *game)
 		return (0);
 	get_view_points(data->player, data->map, data->game);
 	display_static(data);
-	display_moving(data);
+	display(data);
 	mlx_hook(game->win, 2, 1L << 0, &key_event, data);
 	mlx_hook(game->win, 17, 0, &redcross_exit, data);
 	mlx_loop_hook(game->mlx, &mouse_event, data);
