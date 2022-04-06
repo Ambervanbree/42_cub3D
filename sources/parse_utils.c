@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 10:50:21 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 10:58:43 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:15:26 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,26 @@ char	*get_path_texture(char *line)
 int	get_color(char *line)
 {
 	int	i;
+	int	j;
 	int	tab[3];
 	int	color;
 
 	i = 1;
 	while (line[i] == ' ')
 		i++;
-	tab[0] = ft_atoi(&line[i]);
-	while (ft_isdigit(line[i]))
-		i++;
-	i++;
-	tab[1] = ft_atoi(&line[i]);
-	while (ft_isdigit(line[i]))
-		i++;
-	i++;
-	tab[2] = ft_atoi(&line[i]);
-	if ((tab[0] < 0) || (tab[1] < 0) || (tab[2] < 0)
-		|| (tab[0] > 255) || (tab[1] > 255) || (tab[2] > 255))
-		return (-1);
+	j = -1;
+	while (++j < 3)
+	{
+		tab[j] = ft_atoi(&line[i]);
+		while (ft_isdigit(line[i]))
+			i++;
+		while ((line[i] == ' ') || (line[i] == ','))
+			i++;
+	}
 	free_string(&line);
+	if ((tab[0] < 0) || (tab[0] > 255 || (tab[1] < 0) || (tab[1] > 255)
+			|| (tab[2] < 0) || (tab[2] > 255)))
+		return (-1);
 	color = tab[2];
 	color = color | (tab[1] << 8);
 	color = color | (tab[0] << 16);

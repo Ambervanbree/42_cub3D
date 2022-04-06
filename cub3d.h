@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 15:23:19 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:06:05 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int		get_color(char *line);
 void	print_map(t_map *map);
 void	get_len(t_map *map, int fd);
 char	*realloc_line(char *line, int size);
-int		check_map_init_player(t_data *data);
+int		check_map_init_player(t_map *map, t_player *player);
 
 //game play
 int		init_game(t_data *data, t_game *game);

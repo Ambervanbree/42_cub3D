@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_player_init.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:36:17 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/03/30 16:57:01 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:07:25 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,31 @@ int	get_player_data(t_player *player, int i, int j, char direction)
 	return (1);
 }
 
-int	check_map_init_player(t_data *data)
+int	check_map_init_player(t_map *map, t_player *player)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (data->map->map[++i])
+	while (map->map[++i])
 	{
 		j = -1;
-		while (data->map->map[i][++j])
+		while (map->map[i][++j])
 		{	
-			if (!strchr("10NESW ", data->map->map[i][j]))
+			if (!strchr("10NESW ", map->map[i][j]))
 				return (error_message("Invalid map", NULL, 0));
-			if (strchr("NEWS", data->map->map[i][j]))
+			if (strchr("NEWS", map->map[i][j]))
 			{
-				if (!get_player_data(data->player, i, j, data->map->map[i][j]))
+				if (player->angle != 100
+					|| !get_player_data(player, i, j, map->map[i][j]))
 					return (error_message("Invalid map", NULL, 0));
-				data->map->map[i][j] = '0';
+				map->map[i][j] = '0';
 			}
-			if (!check_walls(data->map, i, j))
+			if (!check_walls(map, i, j))
 				return (error_message("Invalid map", NULL, 0));
 		}
 	}
-	if (data->player->angle > 2 * PI)
+	if (player->angle > 2 * PI)
 		return (error_message("Invalid map", NULL, 0));
 	return (1);
 }
