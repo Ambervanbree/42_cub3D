@@ -1,14 +1,14 @@
 
 
 
-WE ./textures/green_tiles.xpm
-NO ./textures/wood1_small.xpm
-F 130,200,0
+WE ./textures/wood1.xpm
+NO ./textures/book.xpm
+F 140,90,50
 
-C 65,195,230
-EA ./textures/bw_tiles.xpm
+C 150,150,150
+EA ./textures/wood2.xpm
 
-SO ./textures/wood_boards.xpm
+SO ./textures/door.xpm
 
 11111111111111111111111111111111
 10000000000000000000000000000001
