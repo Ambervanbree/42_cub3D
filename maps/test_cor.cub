@@ -1,5 +1,5 @@
-NO ./textures/cat.xpm
-SO ./textures/fish.xpm
+NO ./textures/stormy_clouds.xpm
+SO ./textures/wood_boards.xpm
 WE ./textures/hedge3.xpm
 EA ./textures/hedge4.xpm
 F 130,150,120
