@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:49:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 15:12:54 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:23:19 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ enum e_enum
 
 typedef double	t_vector[2];
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*img;
 	char	*addr;
@@ -73,7 +73,7 @@ typedef struct s_game
 	void	*wall_tile;
 	void	*win;
 	void	*mlx;
-	t_img	*img3D;
+	t_img	*img3d;
 	void	*name;
 	void	*player;
 	void	*direction;
@@ -96,10 +96,10 @@ typedef struct s_player
 	double		delta;
 	double		ratio;
 	int			total_rays;
-	double		sdX;
-	double		sdY;
-	double		ddX;
-	double		ddY;
+	double		sdx;
+	double		sdy;
+	double		ddx;
+	double		ddy;
 	int			mouse_x;
 	int			mouse_y;
 	t_vector	*ray_x;
@@ -151,7 +151,7 @@ void	draw_3d_game(t_data *data, t_game *game, t_img *img);
 void	fish_eye_correction(t_player *player);
 void	ft_pixel_put(t_img *img, int x, int y, int color);
 int		get_pixel_color(t_game *game, t_text text, int y, int x);
-void    get_images(t_game *game, t_map *map);
+void	get_images(t_game *game, t_map *map);
 void	draw_point(t_game *game, double *point, int color);
 int		get_wall_texture(t_player *player);
 void	draw_background(t_game *game, t_map *map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 12:33:54 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:22:28 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	get_ray_x_max(int ray_nr, t_player *player, int *box, int *j)
 {
 	if ((player->ray_angle == PI / 2) || (player->ray_angle == 3 * PI / 2))
-		player->sdX = 1000;
+		player->sdx = 1000;
 	else
 	{
 		if ((player->ray_angle < PI / 2) || (player->ray_angle > 3 * PI / 2))
@@ -28,10 +28,10 @@ void	get_ray_x_max(int ray_nr, t_player *player, int *box, int *j)
 			player->ray_x[ray_nr][0] = floor(player->pos[0]) - *j;
 			box[0] = (int)player->ray_x[ray_nr][0] - 1;
 		}
-		player->sdX = (player->ray_x[ray_nr][0] - player->pos[0])
+		player->sdx = (player->ray_x[ray_nr][0] - player->pos[0])
 			/ (cos(player->ray_angle));
 		player->ray_x[ray_nr][1] = player->pos[1]
-			+ (player->sdX * (sin(player->ray_angle)));
+			+ (player->sdx * (sin(player->ray_angle)));
 		box[1] = (int)player->ray_x[ray_nr][1];
 	}
 }
@@ -39,7 +39,7 @@ void	get_ray_x_max(int ray_nr, t_player *player, int *box, int *j)
 void	get_ray_y_max(int ray_nr, t_player *player, int *box, int *j)
 {
 	if ((player->ray_angle == PI) || (player->ray_angle == 0))
-		player->sdY = 1000;
+		player->sdy = 1000;
 	else
 	{
 		if (player->ray_angle < PI)
@@ -52,10 +52,10 @@ void	get_ray_y_max(int ray_nr, t_player *player, int *box, int *j)
 			player->ray_y[ray_nr][1] = floor(player->pos[1]) - *j;
 			box[1] = (int)player->ray_y[ray_nr][1] - 1;
 		}
-		player->sdY = (player->ray_y[ray_nr][1] - player->pos[1])
+		player->sdy = (player->ray_y[ray_nr][1] - player->pos[1])
 			/ sin(player->ray_angle);
 		player->ray_y[ray_nr][0] = player->pos[0]
-			+ (player->sdY * (cos(player->ray_angle)));
+			+ (player->sdy * (cos(player->ray_angle)));
 		box[0] = (int)player->ray_y[ray_nr][0];
 	}
 }
@@ -91,16 +91,16 @@ void	compare_rays(int ray_nr, t_player *player, t_game *game)
 	int		i;
 
 	b = (int)((float)ray_nr * player->ratio);
-	if (fabs(player->sdX) < fabs(player->sdY))
+	if (fabs(player->sdx) < fabs(player->sdy))
 	{
 		player->next_hit = player->ray_x;
-		game->twod_ray[ray_nr] = fabs(player->sdX);
+		game->twod_ray[ray_nr] = fabs(player->sdx);
 		game->threed_hit[b] = player->ray_x[ray_nr][1];
 	}
 	else
 	{
 		player->next_hit = player->ray_y;
-		game->twod_ray[ray_nr] = fabs(player->sdY);
+		game->twod_ray[ray_nr] = fabs(player->sdy);
 		game->threed_hit[b] = player->ray_y[ray_nr][0];
 	}
 	game->threed_ray[b] = 1 / game->twod_ray[ray_nr] * 500;

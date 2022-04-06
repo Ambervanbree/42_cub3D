@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   exit_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 12:33:49 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:21:55 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_free_game(t_game *game)
+void	ft_destroy_images(t_game *game)
 {
 	int	i;
-	
-	if (game->img3D)
+
+	if (game->img3d)
 	{
-		if (game->img3D->img)
-			mlx_destroy_image(game->mlx, game->img3D->img);
-		free(game->img3D);
+		if (game->img3d->img)
+			mlx_destroy_image(game->mlx, game->img3d->img);
+		free(game->img3d);
 	}
 	if (game->text)
 	{
@@ -38,6 +38,11 @@ void	ft_free_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->floor_tile);
 	if (game->wall_tile)
 		mlx_destroy_image(game->mlx, game->wall_tile);
+}
+
+void	ft_free_game(t_game *game)
+{
+	ft_destroy_images(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)

@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:30:45 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 12:29:19 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:21:55 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	init_window(t_game *game)
 
 int	display(t_data *data)
 {
-	draw_3d_game(data, data->game, data->game->img3D);
+	draw_3d_game(data, data->game, data->game->img3d);
 	return (0);
 }
 

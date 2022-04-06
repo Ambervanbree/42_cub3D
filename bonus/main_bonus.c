@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 12:41:24 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:21:55 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ int	init_player_struct(t_player *player)
 int	init_game_struct(t_game *game)
 {
 	int	i;
-	
+
 	game->floor_tile = NULL;
 	game->wall_tile = NULL;
 	game->player = NULL;
 	game->direction = NULL;
 	game->win = NULL;
 	game->mlx = NULL;
-	game->img3D = malloc(1 * sizeof(t_img));
-	game->img3D->img = NULL;
+	game->img3d = malloc(1 * sizeof(t_img));
+	game->img3d->img = NULL;
 	game->text = malloc(4 * sizeof(t_text));
 	i = -1;
 	while (++i < 4)
@@ -65,7 +65,7 @@ int	init_game_struct(t_game *game)
 	game->threed_ray = malloc(SCR_WIDTH * sizeof(double));
 	game->threed_text = malloc(SCR_WIDTH * sizeof(int));
 	game->threed_hit = malloc(SCR_WIDTH * sizeof(double));
-	if (!game->img3D || !game->text || !game->twod_ray || !game->threed_ray
+	if (!game->img3d || !game->text || !game->twod_ray || !game->threed_ray
 		|| !game->threed_text || !game->threed_hit)
 		return (error_message("Malloc failed", NULL, 1));
 	return (1);
