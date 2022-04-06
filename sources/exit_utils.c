@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:58:16 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 15:11:11 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:21:55 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	ft_destroy_images(t_game *game)
 {
 	int	i;
 
-	if (game->img3D)
+	if (game->img3d)
 	{
-		if (game->img3D->img)
-			mlx_destroy_image(game->mlx, game->img3D->img);
-		free(game->img3D);
+		if (game->img3d->img)
+			mlx_destroy_image(game->mlx, game->img3d->img);
+		free(game->img3d);
 	}
 	if (game->text)
 	{

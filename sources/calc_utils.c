@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:00:47 by cproesch          #+#    #+#             */
-/*   Updated: 2022/04/06 15:23:42 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:26:48 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	fish_eye_correction(t_player *player)
 
 	diff_angles = fabs(player->angle - player->ray_angle);
 	diff_angles = correct_angle(diff_angles);
-	player->sdX *= cos(diff_angles);
-	player->sdY *= cos(diff_angles);
+	player->sdx *= cos(diff_angles);
+	player->sdy *= cos(diff_angles);
 }
 
 double	correct_angle(double angle)
@@ -33,7 +33,7 @@ double	correct_angle(double angle)
 
 int	get_wall_texture(t_player *player)
 {
-	if (player->sdX < player->sdY)
+	if (player->sdx < player->sdy)
 	{
 		if (player->ray_angle < PI / 2 || player->ray_angle > PI + PI / 2)
 			return (EAST);
