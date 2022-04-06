@@ -1,10 +1,10 @@
 
 F 130,200,0
 C 65,195,230
-NO ./textures/green_bricks.xpm
-SO ./textures/red_bricks.xpm
-WE ./textures/green_bricks.xpm
-EA ./textures/red_bricks.xpm
+NO ./textures/wood1_small.xpm
+SO ./textures/wood_boards.xpm
+WE ./textures/green_tiles.xpm
+EA ./textures/bw_tiles.xpm
 
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 15:36:06 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:42:28 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	init_player_struct(t_player *player)
 
 	player->angle = 100;
 	player->dist = 0.5;
-	player->delta = 0.01;
+	player->delta = 0.003;
 	player->plane = 11 * PI / 60;
 	total_rays = player->plane * 2 / player->delta;
 	player->total_rays = (int)total_rays;

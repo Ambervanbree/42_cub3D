@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./textures/wood1_small.xpm
+SO ./textures/wood_boards.xpm
+WE ./textures/green_tiles.xpm
+EA ./textures/bw_tiles.xpm
 F 220,100,0
 C 225,30,0
 
