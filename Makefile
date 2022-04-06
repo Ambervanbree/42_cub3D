@@ -6,7 +6,7 @@
 #    By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:51:08 by avan-bre          #+#    #+#              #
-#    Updated: 2022/04/06 11:04:14 by avan-bre         ###   ########.fr        #
+#    Updated: 2022/04/06 15:35:59 by avan-bre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ endif
 
 IFLAGS	=	-I. -Ilibft -Imlx
 CFLAGS	=	-Wall -Werror -Wextra $(IFLAGS) $(SFLAGS)
-SFLAGS	=	-fsanitize=address -g3
 LFLAGS	=	-Llibft -lft
 
 ifeq ($(OS), Linux)
