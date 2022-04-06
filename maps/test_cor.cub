@@ -1,5 +1,5 @@
-NO ./textures/building1.xpm
-SO ./textures/building2.xpm
+NO ./textures/stormy_clouds.xpm
+SO ./textures/wood_boards.xpm
 WE ./textures/hedge3.xpm
 EA ./textures/hedge4.xpm
 F 130,150,120
