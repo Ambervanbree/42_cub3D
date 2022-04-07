@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/07 10:15:36 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:42:22 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	init_map_struct(t_map *map)
 	map->ea = NULL;
 	map->height = 0;
 	map->width = 0;
-	map->floor = 0;
-	map->ceiling = 0;
+	map->floor = -1;
+	map->ceiling = -1;
 	map->map = NULL;
 }
 
