@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 10:43:41 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 11:03:47 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:10:54 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int	get_data_line(t_map *map, char *line)
 			map->we = get_path_texture(line);
 		else if (!map->ea && !strncmp("EA ", line, 3))
 			map->ea = get_path_texture(line);
-		else if (!map->floor && !strncmp("F ", line, 2))
+		else if (map->floor < 0 && !strncmp("F ", line, 2))
 			map->floor = get_color(line);
-		else if (!map->ceiling && !strncmp("C ", line, 2))
+		else if (map->ceiling < 0 && !strncmp("C ", line, 2))
 			map->ceiling = get_color(line);
 		else
 			return (0);

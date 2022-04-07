@@ -6,37 +6,45 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 19:37:23 by cproesch          #+#    #+#             */
-/*   Updated: 2022/04/06 16:57:58 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/07 10:51:48 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+int	ft_isspace(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
+		|| c == '\r')
+		return (1);
+	return (0);
+}
+
 int	ft_atoi(const char *str)
 {
-	size_t	i;
-	long	nbr;
-	int		n;
+	long int	i;
+	long int	neg;
+	long int	ret;
 
 	i = 0;
-	nbr = 0;
-	n = 1;
-	while ((str[i] == ' ') || ((str[i] >= '\t') && (str[i] <= '\r')))
+	neg = 1;
+	ret = 0;
+	while (ft_isspace(str[i]))
 		i++;
-	if ((str[i] == '-') || (str[i] == '+'))
+	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			n = -n;
+			neg = neg * -1;
 		i++;
 	}
-	if (!str[i] || str[i] == '\n')
-		return (-1);
-	while ((str[i] >= '0') && (str[i] <= '9'))
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		nbr = (nbr * 10) + (str[i] - 48);
+		ret = ret * 10 + (str[i] - '0');
 		i++;
-		if (((n * nbr) > 2147483647) || ((n * nbr) < -2147483648))
+		if (neg == 1 && ret > 2147483647)
 			return (-1);
+		if (neg == -1 && ret > 2147483648)
+			return (0);
 	}
-	return (n * (int)nbr);
+	return ((int)ret * neg);
 }

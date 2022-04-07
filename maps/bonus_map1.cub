@@ -2,7 +2,7 @@ NO ./textures/wood1_small.xpm
 SO ./textures/wood_boards.xpm
 WE ./textures/green_tiles.xpm
 EA ./textures/bw_tiles.xpm
-F 130,200,0
+F 130,200,100
 C 65,195,230
 
 

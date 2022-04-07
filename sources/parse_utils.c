@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 10:50:21 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 17:15:26 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:02:09 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,19 @@ int	get_color(char *line)
 	j = -1;
 	while (++j < 3)
 	{
-		tab[j] = ft_atoi(&line[i]);
+		tab[j] = ft_atoi2(&line[i]);
 		while (ft_isdigit(line[i]))
 			i++;
 		while ((line[i] == ' ') || (line[i] == ','))
 			i++;
 	}
-	free_string(&line);
-	if ((tab[0] < 0) || (tab[0] > 255 || (tab[1] < 0) || (tab[1] > 255)
-			|| (tab[2] < 0) || (tab[2] > 255)))
+	if ((line[i] != '\n') || (tab[0] < 0) || (tab[0] > 255 || (tab[1] < 0)
+		|| (tab[1] > 255) || (tab[2] < 0) || (tab[2] > 255)))
+	{
+		free_string(&line);
 		return (-1);
+	}
+	free_string(&line);
 	color = tab[2];
 	color = color | (tab[1] << 8);
 	color = color | (tab[0] << 16);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+         #
+#    By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:51:08 by avan-bre          #+#    #+#              #
-#    Updated: 2022/04/06 18:19:34 by avan-bre         ###   ########.fr        #
+#    Updated: 2022/04/07 10:57:13 by cproesch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,8 +59,9 @@ endif
 
 S_DIR	=	sources/
 B_DIR	=	bonus/
-C_SRCS	=	parser.c parse_utils.c map_check_player_init.c calculations.c \
-			keypress.c display3D.c calc_utils.c display3D_utils.c keypress_utils.c
+C_SRCS	=	parser.c parse_utils.c parser_utils2.c map_check_player_init.c \
+			calculations.c keypress.c display3D.c calc_utils.c display3D_utils.c \
+			keypress_utils.c
 SRCS	=	$(C_SRCS) main.c game.c exit_utils.c
 SRCS_B	=	display2D.c exit_utils_bonus.c game_bonus.c main_bonus.c
 B_SRCS	=	$(addprefix $(S_DIR), $(C_SRCS)) $(addprefix $(B_DIR), $(SRCS_B))
