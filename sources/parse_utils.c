@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 10:50:21 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/07 11:02:09 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:53:51 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,21 @@ char	*get_path_texture(char *line)
 	return (path);
 }
 
+int	color_catcher(int *tab)
+{
+	int	color;
+
+	color = tab[2];
+	color = color | (tab[1] << 8);
+	color = color | (tab[0] << 16);
+	return (color);
+}
+
 int	get_color(char *line)
 {
 	int	i;
 	int	j;
 	int	tab[3];
-	int	color;
 
 	i = 1;
 	while (line[i] == ' ')
@@ -54,28 +63,13 @@ int	get_color(char *line)
 			i++;
 	}
 	if ((line[i] != '\n') || (tab[0] < 0) || (tab[0] > 255 || (tab[1] < 0)
-		|| (tab[1] > 255) || (tab[2] < 0) || (tab[2] > 255)))
+			|| (tab[1] > 255) || (tab[2] < 0) || (tab[2] > 255)))
 	{
 		free_string(&line);
 		return (-1);
 	}
 	free_string(&line);
-	color = tab[2];
-	color = color | (tab[1] << 8);
-	color = color | (tab[0] << 16);
-	return (color);
-}
-
-void	print_map(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (map->map[i])
-	{
-		printf("Line[%d]:	%s\n", i, map->map[i]);
-		i++;
-	}
+	return (color_catcher(tab));
 }
 
 void	get_len(t_map *map, int fd)

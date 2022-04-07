@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 18:15:06 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:42:22 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	init_map_struct(t_map *map)
 	map->ea = NULL;
 	map->height = 0;
 	map->width = 0;
-	map->floor = 0;
-	map->ceiling = 0;
+	map->floor = -1;
+	map->ceiling = -1;
 	map->map = NULL;
 }
 
@@ -51,8 +51,7 @@ int	init_game_struct(t_game *game)
 
 	game->floor_tile = NULL;
 	game->wall_tile = NULL;
-	game->player = NULL;
-	game->direction = NULL;
+	game->name = NULL;
 	game->win = NULL;
 	game->mlx = NULL;
 	game->img3d = malloc(1 * sizeof(t_img));

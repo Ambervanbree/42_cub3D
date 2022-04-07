@@ -1,8 +1,8 @@
 
 F 130,200,0
-C 65,195,230
+C 65,20,230
 
-NO ./textures/wood1_small.xpm
+NO             ./textures/wood1_small.xpm
 SO ./textures/wood_boards.xpm
 
 
