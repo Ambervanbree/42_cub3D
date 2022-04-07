@@ -1,6 +1,6 @@
 
 F 130,200,0
-C 65,195,230
+C 65,120,230
 NO ./textures/wood1_small.xpm
 SO ./textures/wood_boards.xpm
 WE ./textures/green_tiles.xpm

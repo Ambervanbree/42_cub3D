@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:04:08 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 18:18:57 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/07 10:04:37 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,21 @@
 int	hit_wall_x(t_data *data, double angle)
 {
 	int		box[2];
-	int		j;
+	int		i;
 	float	ret;
 
 	box[0] = (int)data->player->pos[0];
 	box[1] = (int)data->player->pos[1];
+	ret = 0;
+	i = 0;
 	while (box[0] >= 0 && box[0] < data->map->width
 		&& box[1] >= 0 && box[1] < data->map->height
 		&& data->map->map[box[1]][box[0]] != '1')
 	{
-		ret = hit_wall_x2(data, &j, angle, box);
+		ret = hit_wall_x2(data, &i, angle, box);
 		if (ret > 0.5)
 			return (0);
-		j++;
+		i++;
 	}
 	return (1);
 }
@@ -35,20 +37,21 @@ int	hit_wall_x(t_data *data, double angle)
 int	hit_wall_y(t_data *data, double angle)
 {
 	int		box[2];
-	int		j;
+	int		i;
 	float	ret;
 
 	box[0] = (int)data->player->pos[0];
 	box[1] = (int)data->player->pos[1];
-	j = 0;
+	i = 0;
+	ret = 0;
 	while (box[0] >= 0 && box[0] < data->map->width
 		&& box[1] >= 0 && box[1] < data->map->height
 		&& data->map->map[box[1]][box[0]] != '1')
 	{
-		ret = hit_wall_y2(data, &j, angle, box);
+		ret = hit_wall_y2(data, &i, angle, box);
 		if (ret > 0.5)
 			return (0);
-		j++;
+		i++;
 	}
 	return (1);
 }

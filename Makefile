@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+         #
+#    By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:51:08 by avan-bre          #+#    #+#              #
-#    Updated: 2022/04/07 10:57:13 by cproesch         ###   ########.fr        #
+#    Updated: 2022/04/07 11:25:54 by avan-bre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ else
 endif
 
 IFLAGS	=	-I. -Ilibft -Imlx
-CFLAGS	=	-Wall -Werror -Wextra $(IFLAGS) $(SFLAGS)
+CFLAGS	=	-Wall -Werror -Wextra $(IFLAGS) $(SFLAGS) -g
 LFLAGS	=	-Llibft -lft
 
 ifeq ($(OS), Linux)

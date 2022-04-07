@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/07 11:09:35 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:26:03 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int	init_game_struct(t_game *game)
 {
 	int	i;
 
-	game->floor_tile = NULL;
-	game->wall_tile = NULL;
 	game->win = NULL;
 	game->mlx = NULL;
 	game->img3d = malloc(1 * sizeof(t_img));
