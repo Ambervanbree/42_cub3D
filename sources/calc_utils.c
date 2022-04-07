@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:00:47 by cproesch          #+#    #+#             */
-/*   Updated: 2022/04/06 15:26:48 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/07 12:03:33 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	fish_eye_correction(t_player *player)
 {
-	float	diff_angles;
+	double	diff_angles;
 
-	diff_angles = fabs(player->angle - player->ray_angle);
-	diff_angles = correct_angle(diff_angles);
+	diff_angles = player->angle - player->ray_angle;
 	player->sdx *= cos(diff_angles);
 	player->sdy *= cos(diff_angles);
 }

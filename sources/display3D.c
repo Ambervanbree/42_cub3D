@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 12:33:29 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 15:04:52 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:30:37 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	draw_ray(int x, int ray_size, t_game *game, t_img *display)
 	int	y;
 
 	start = 0;
-	y = ((int)game->threed_ray[x] - SCR_HEIGHT) / 2;
+	y = (ray_size - SCR_HEIGHT) / 2;
 	if (ray_size < SCR_HEIGHT)
 	{
 		start = (SCR_HEIGHT - ray_size) / 2;

@@ -6,7 +6,7 @@
 /*   By: cproesch <cproesch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:14:38 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 15:22:28 by cproesch         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:15:46 by cproesch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	compare_rays(int ray_nr, t_player *player, t_game *game)
 		game->twod_ray[ray_nr] = fabs(player->sdy);
 		game->threed_hit[b] = player->ray_y[ray_nr][0];
 	}
-	game->threed_ray[b] = 1 / game->twod_ray[ray_nr] * 500;
+	game->threed_ray[b] = 1 / game->twod_ray[ray_nr] * 650;
 	game->threed_text[b] = get_wall_texture(player);
 	i = -1;
 	while (++i < player->ratio)
