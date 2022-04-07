@@ -6,7 +6,7 @@
 /*   By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 18:42:02 by avan-bre          #+#    #+#             */
-/*   Updated: 2022/04/06 18:02:32 by avan-bre         ###   ########.fr       */
+/*   Updated: 2022/04/07 10:15:14 by avan-bre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int	init_game_struct(t_game *game)
 {
 	int	i;
 
-	game->floor_tile = NULL;
-	game->wall_tile = NULL;
 	game->win = NULL;
 	game->mlx = NULL;
 	game->img3d = malloc(1 * sizeof(t_img));

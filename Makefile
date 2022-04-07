@@ -6,7 +6,7 @@
 #    By: avan-bre <avan-bre@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 14:51:08 by avan-bre          #+#    #+#              #
-#    Updated: 2022/04/06 18:19:34 by avan-bre         ###   ########.fr        #
+#    Updated: 2022/04/07 10:33:25 by avan-bre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ else
 endif
 
 IFLAGS	=	-I. -Ilibft -Imlx
-CFLAGS	=	-Wall -Werror -Wextra $(IFLAGS) $(SFLAGS)
+CFLAGS	=	-Wall -Werror -Wextra $(IFLAGS) $(SFLAGS) -g
 LFLAGS	=	-Llibft -lft
 
 ifeq ($(OS), Linux)
